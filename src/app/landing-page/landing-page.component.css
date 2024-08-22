@@ -222,16 +222,11 @@
 
 .export-button {
     background-color: #ff3e3e;
-    /* color: white;
-    border: none;
-    padding: 10px;
-    cursor: pointer;
-    border-radius: 5px; */
+   
 
     display: flex;
     position: relative;
     height: 44px;
-    /* padding: 0 18px; */
     font-size: 14px;
     font-weight: 800;
     color: #fff;
@@ -324,21 +319,9 @@
     fill: #FF0000;
 }
 
-/* Keyframes for rotating the circle */
-@keyframes rotateCircle {
-    0% {
-        transform: rotate(0deg);
-    }
-    100% {
-        transform: rotate(360deg);
-    }
-}
 
 .color-wrapper {
-    /* padding: 80px 30px; */
-    /* display: flex;
-    align-items: center;
-    flex-direction: column; */
+    
 }
 
 .color-picker {
@@ -371,17 +354,13 @@
   
   .color-picker button.selected {
     border: 3px solid red;
-    /* box-shadow: 0px 0px 10px red; */
   }
 
   .tabs-container {
     display: flex;
     flex-direction: column;
-    /* width: 200px; */
     padding: 10px;
-    /* background-color: #f8f9fa; */
     border-radius: 10px;
-    /* box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); */
   }
   
   .tab {
