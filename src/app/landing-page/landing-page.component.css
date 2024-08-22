@@ -211,6 +211,7 @@
 .export-dropdown {
     position: relative;
     margin-bottom: 20px;
+    margin-top: 30px;
     height: 44px;
     background: #ff3e3e;
     border-radius: 22px;

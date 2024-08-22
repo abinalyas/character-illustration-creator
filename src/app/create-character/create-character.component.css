@@ -141,8 +141,8 @@
 .content {
   /* zoom: 0.5; */
   height: 500px;
-  width: 150px;
-  display: flex;
+  width: 190px;
+  /* display: flex; */
   flex-wrap: wrap;
 }
 
@@ -203,9 +203,11 @@
 
 .svg-item {
   padding: 15px;
-  margin: 10px 0;
+  margin: 12px 12px;
   cursor: pointer;
   transition: transform 0.3s ease;
+  border: 2px solid red; 
+  border-radius: 20px;
 }
 
 .svg-item:hover {

@@ -71,6 +71,10 @@ export class CreateCharacterComponent implements OnChanges {
   avaFacePaths = ['face/female/Ava/Ava-1.svg','face/female/Ava/Ava-2.svg','face/female/Ava/Ava-3.svg','face/female/Ava/Ava-4.svg','face/female/Ava/Ava-5.svg','face/female/Ava/Ava-6.svg','face/female/Ava/Ava-7.svg'];
   jennaFacePaths = ['face/female/Jenna/Jenna-1.svg','face/female/Jenna/Jenna-2.svg','face/female/Jenna/Jenna-3.svg','face/female/Jenna/Jenna-4.svg','face/female/Jenna/Jenna-5.svg','face/female/Jenna/Jenna-6.svg','face/female/Jenna/Jenna-7.svg','face/female/Jenna/Jenna-8.svg','face/female/Jenna/Jenna-9.svg'];
 
+  rightHandPngPaths = ['hands/Right-hand/png/right-hand-1.png', 'hands/Right-hand/png/right-hand-2.png', 'hands/Right-hand/png/right-hand-3.png', 'hands/Right-hand/png/right-hand-4.png'];
+  leftHandPngPaths = ['hands/Left-hand/png/left-hand-1.png', 'hands/Left-hand/png/left-hand-2.png', 'hands/Left-hand/png/left-hand-3.png', 'hands/Left-hand/png/left-hand-4.png', 'hands/Left-hand/png/left-hand-5.png'];
+
+
 
 
 
@@ -193,6 +197,9 @@ export class CreateCharacterComponent implements OnChanges {
     this.selectedBackground = option.image;
 
     this.backgroundSvg = await this.svgService.loadSvg(option.svg);
+    if(this.selectedBackground == 'backgrounds/1.svg') {
+      this.backgroundSvg = '';
+    }
 
     // this.backgroundSvg = option.svg.toString();
     this.showPopup = false;
@@ -211,17 +218,17 @@ export class CreateCharacterComponent implements OnChanges {
       this.sitingY = 160;
     }
 
-    
+  
     const svgContent = ` 
-      <svg width="1600" height="1000" xmlns="http://www.w3.org/2000/svg">
-        <g id="face" transform="translate(${ 0 }, -100)">${this.backgroundSvg}</g>
-        <g id="face" transform="translate(${ 502 + this.sitingX}, ${ 150 + this.sitingY})">${this.faceSvg}</g>
-        <g id="body" transform="translate(${ 550 + this.sitingX}, ${ 325 + this.sitingY})">${this.bodySvg}</g>
-        <g id="legs" transform="translate(${ 350 + this.sitingX}, ${ 475 + this.sitingY})">${this.legsSvg}</g>
-        <g id="left-hand" transform="translate(${ 604 + this.sitingX},${ 259 + this.sitingY})">${this.leftHandSvg}</g>
-        <g id="right-hand" transform="translate(${ 375 + this.sitingX}, ${ 328 + this.sitingY})">${this.rightHandSvg}</g>
-      </svg>
-    `;
+    <svg width="1600" height="1000" xmlns="http://www.w3.org/2000/svg">
+      ${this.backgroundSvg ? `<g id="background" transform="translate(${0}, -100)">${this.backgroundSvg}</g>` : ''}
+      <g id="face" transform="translate(${502 + this.sitingX}, ${150 + this.sitingY})">${this.faceSvg}</g>
+      <g id="body" transform="translate(${550 + this.sitingX}, ${325 + this.sitingY})">${this.bodySvg}</g>
+      <g id="legs" transform="translate(${350 + this.sitingX}, ${475 + this.sitingY})">${this.legsSvg}</g>
+      <g id="left-hand" transform="translate(${604 + this.sitingX}, ${259 + this.sitingY})">${this.leftHandSvg}</g>
+      <g id="right-hand" transform="translate(${375 + this.sitingX}, ${328 + this.sitingY})">${this.rightHandSvg}</g>
+    </svg>
+  `;
 
     try {
       const optimizedSvg = await this.svgOptimizer.optimize(svgContent);

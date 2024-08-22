@@ -244,4 +244,55 @@ export class LandingPageComponent {
     return this.selectedGender === item || this.selectedLeftMenuItem === item || this.selectedRightMenuItem === item;
   }
 
+  downloadSVG() {
+    const svgElement = document.getElementById('svg-container')?.innerHTML;
+    if (!svgElement) return;
+
+    const svgBlob = new Blob([svgElement], { type: 'image/svg+xml;charset=utf-8' });
+    const svgUrl = URL.createObjectURL(svgBlob);
+    this.downloadFile(svgUrl, 'illustration.svg');
+  }
+
+  async downloadPNG() {
+    const svgContainer = document.getElementById('svg-container');
+    if (!svgContainer) return;
+
+    const svgElement = svgContainer.innerHTML;
+    if (!svgElement) return;
+
+    const sanitizedSvg = svgElement.replace(/(\r\n|\n|\r)/gm, "").trim();
+    const base64Svg = window.btoa(unescape(encodeURIComponent(sanitizedSvg)));
+    const svgDataUrl = `data:image/svg+xml;base64,${base64Svg}`;
+
+    const image = new Image();
+    image.onload = () => {
+      const canvas = document.createElement('canvas');
+      canvas.width = image.width;
+      canvas.height = image.height;
+      const context = canvas.getContext('2d');
+
+      if (context) {
+        context.drawImage(image, 0, 0);
+        canvas.toBlob((blob) => {
+          if (blob) {
+            const pngUrl = URL.createObjectURL(blob);
+            this.downloadFile(pngUrl, 'illustration.png');
+            URL.revokeObjectURL(pngUrl);
+          }
+        }, 'image/png');
+      }
+    };
+    image.onerror = (err) => console.error('Failed to load image', err);
+    image.src = svgDataUrl;
+  }
+
+  private downloadFile(url: string, filename: string) {
+    const downloadLink = document.createElement('a');
+    downloadLink.href = url;
+    downloadLink.download = filename;
+    document.body.appendChild(downloadLink);
+    downloadLink.click();
+    document.body.removeChild(downloadLink);
+  }
+
 }
