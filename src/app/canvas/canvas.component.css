@@ -1,0 +1,8 @@
+.svg-container {
+    display: flex;
+    flex-wrap: nowrap;
+  }
+  
+  .svg-container > div {
+    margin-right: 10px; /* Adjust spacing between SVGs as needed */
+  }

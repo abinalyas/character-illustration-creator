@@ -1,0 +1,6 @@
+<div>
+    <h2>Select Context</h2>
+    <select [(ngModel)]="context" (change)="onContextChange($event)">
+      <option *ngFor="let ctx of contexts" [value]="ctx">{{ ctx }}</option>
+    </select>
+</div>

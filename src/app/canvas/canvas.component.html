@@ -1,0 +1,6 @@
+<div id="svg-container" class="svg-container"></div>
+<div>
+    <button *ngFor="let color of skinColors" [style.backgroundColor]="color" (click)="onColorChange(color)">
+      {{ color }}
+    </button>
+</div>

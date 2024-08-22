@@ -1,0 +1,481 @@
+/* Main Container */
+.main-container {
+    display: flex;
+    height: 100vh;
+  }
+  
+ /* Left Menu */
+.left-menu {
+    width: 8%;
+    /* background-color: #f8f9fa; */
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Menu Option */
+.menu-option {
+    position: relative;
+    cursor: pointer;
+    /* width: 44px; */
+    /* height: 44px; */
+    margin: 15px 0px;
+    display: block;
+}
+
+/* Style for the outline circle */
+.outline-circle {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: stroke 0.3s ease;
+    transform-origin: center center;
+}
+
+/* Rotate the circle on hover */
+.menu-option:hover .outline-circle {
+    animation: rotateCircle 2s linear infinite;
+    stroke: #FF0000;
+}
+
+.gender-option:hover .outline-circle .hovered-outline {
+    stroke: #FF0000;
+}
+
+.character-options:hover .outline-circle .hovered-outline {
+    stroke: #FF0000;
+}
+
+/* Hover effect on icon */
+.menu-option:hover .menu-icon {
+    fill: #FF0000; /* Change the icon color to red on hover */
+}
+
+/* Selected state */
+.menu-option.selected .outline-circle {
+    stroke: #FF0000; /* Change the stroke to red when selected */
+}
+
+.menu-option.selected .menu-icon {
+    fill: #FF0000; /* Change the icon color to red when selected */
+}
+
+/* Style for the menu icon */
+.menu-icon {
+    position: absolute;
+    top: 10px; /* Adjust to center the icon within the circle */
+    left: 10px; /* Adjust to center the icon within the circle */
+    transition: fill 0.3s ease;
+}
+
+  
+  /* Center Content */
+  .center-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    /* justify-content: center; */
+    position: relative;
+    height: 100%;
+  }
+
+  .gender-selection {
+    display: flex;;
+  }
+  
+  .gender-option {
+    position: relative;
+    cursor: pointer;
+    width: 44px; /* Set the width and height of the gender option to match the SVG */
+    height: 44px;
+    margin: 0px 25px;
+    display: flex;
+    justify-content: center;
+}
+
+.character-options{
+    position: relative;
+    cursor: pointer;
+    margin: auto;
+    display: flex;
+    justify-content: center; /* Centers horizontally */
+    align-items: center;     /* Centers vertically */
+    height: 85px;            /* Ensure the blue section takes full height */
+    width: auto; 
+}
+
+/* Style for the outline circle */
+.outline-circle {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: stroke 0.3s ease;
+    transform-origin: center center; /* Ensure the rotation happens around the center */
+}
+
+.gender-option:hover .male-circle {
+    stroke: #FF0000;
+}
+
+.character-options:hover .outline-circle {
+    stroke: #FF0000;
+}
+
+.gender-option:hover .female-circle {
+    stroke: #FF0000;
+}
+
+.female-cirlce:hover{
+    stroke: #FF0000;
+}
+
+.character-icon {
+    position: absolute;
+    top: 10px; /* Adjust to center the icon within the circle */
+    left: 10px; /* Adjust to center the icon within the circle */
+    transition: fill 0.3s ease;
+}
+
+/* Style for the gender icon */
+.gender-icon {
+    position: absolute;
+    top: 10px; /* Adjust to center the icon within the circle */
+    left: 10px; /* Adjust to center the icon within the circle */
+    transition: fill 0.3s ease;
+}
+
+.gender-name {
+    position: relative;
+    top: 50px;
+    left: 5px;
+    font-weight: 600;
+    /* line-height: 8px; */
+    /* opacity: .2; */
+    transition: opacity .375s;
+    pointer-events: all;
+}
+
+/* Rotate the circle on hover */
+.gender-option:hover .outline-circle {
+    animation: rotateCircle 2s linear infinite;
+}
+
+.character-options:hover .outline-circle {
+    animation: rotateCircle 2s linear infinite;
+    stroke: #FF0000;
+
+}
+
+/* Hover effect on icon */
+.gender-option:hover .gender-icon {
+    fill: #FF0000; /* Change the icon color to red on hover */
+}
+
+/* Keyframes for rotating the circle */
+@keyframes rotateCircle {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Selected state */
+.selected .outline-circle {
+    fill: #FF0000;
+    stroke: #FF0000;
+    /* filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25)); */
+  }
+  
+  .selected .gender-icon, .selected .menu-icon {
+    fill: #FF0000;
+  }
+
+/* Right Controls Container */
+.right-controls {
+    width: 10%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 10px;
+    background-color: #f8f9fa;
+}
+
+/* Export Button with Dropdown */
+.export-dropdown {
+    position: relative;
+    margin-bottom: 20px;
+    height: 44px;
+    background: #ff3e3e;
+    border-radius: 22px;
+    transition: height .2s;
+    /* overflow: hidden; */
+    padding: 0px 18px;
+}
+
+.export-button {
+    background-color: #ff3e3e;
+    /* color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 5px; */
+
+    display: flex;
+    position: relative;
+    height: 44px;
+    /* padding: 0 18px; */
+    font-size: 14px;
+    font-weight: 800;
+    color: #fff;
+    align-items: center;
+    cursor: default;
+    z-index: 2;
+
+    width: inherit;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.export__arrow {
+    margin: 1px 0 0 8px;
+    fill: #fff;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+    top: 100%;
+    left: 0;
+    right: 0;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    text-align: center;
+}
+
+.export-dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Right Menu */
+.right-menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+}
+
+/* Menu Option */
+.menu-option {
+    position: relative;
+    cursor: pointer;
+    align-items: center;
+    width: 100%;
+    /* height: 44px; */
+    margin: 30px 0px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+/* Style for the outline circle */
+.outline-circle {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transition: stroke 0.3s ease;
+}
+
+.menu-option:hover .circle {
+    stroke: #FF0000;
+}
+
+/* Style for the menu icon */
+.menu-icon {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    transition: fill 0.3s ease;
+}
+
+/* Rotate the circle on hover */
+.menu-option:hover .outline-circle {
+    animation: rotateCircle 2s linear infinite;
+}
+
+/* Hover effect on icon */
+.menu-option:hover .menu-icon {
+    fill: #FF0000;
+}
+
+/* Keyframes for rotating the circle */
+@keyframes rotateCircle {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.color-wrapper {
+    /* padding: 80px 30px; */
+    /* display: flex;
+    align-items: center;
+    flex-direction: column; */
+}
+
+.color-picker {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  
+  .color-picker button {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    padding: 5px;
+    border: 2px dotted grey;
+    position: relative;
+    cursor: pointer;
+    margin: 5px;
+  }
+  
+  .color-picker button::after {
+    content: '';
+    display: block;
+    padding-bottom: 100%;
+  }
+  
+  .color-picker button:hover {
+    border: 2px dotted red;
+    transform: rotate(10deg);
+  }
+  
+  .color-picker button.selected {
+    border: 3px solid red;
+    /* box-shadow: 0px 0px 10px red; */
+  }
+
+  .tabs-container {
+    display: flex;
+    flex-direction: column;
+    /* width: 200px; */
+    padding: 10px;
+    /* background-color: #f8f9fa; */
+    border-radius: 10px;
+    /* box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); */
+  }
+  
+  .tab {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding: 15px;
+    margin-bottom: 5px;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    background-color: white;
+    border-left: 6px solid transparent;
+    flex-wrap: wrap;
+  }
+  
+  .tab.selected {
+    border-left-color: #ff6b6b;
+    background-color: #ffecec;
+    color: #ff6b6b;
+    box-shadow: 0 2px 8px rgba(255, 107, 107, 0.2);
+  }
+  
+  .tab-icon {
+    font-size: 1.5rem;
+    margin-right: 15px;
+  }
+  
+  .tab-heading {
+    font-size: 1.1rem;
+    font-weight: bold;
+  }
+  
+  .tab:hover {
+    transform: translateX(5px);
+  }
+  
+  .color-picker {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 20px;
+    justify-content: center;
+    padding: 10px;
+    margin: 5px;
+  }
+  
+  button {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  button:hover::before {
+    opacity: 1;
+  }
+  
+  button.selected {
+    border: 4px solid #ff6b6b;
+    transform: scale(1.1);
+    box-shadow: 0 8px 16px rgba(255, 107, 107, 0.3);
+  }
+  
+  button:active {
+    transform: scale(0.95);
+  }
+
+  .charcter-selected{
+    width: 82px;
+    height: 82px;
+    border-radius: 50%;
+    
+  }
+  
+  .left-menu-itemes{
+    height: 45px; 
+    width: 45px; 
+    border-radius: 50%;
+    margin-left: 10px;
+  }
+  
