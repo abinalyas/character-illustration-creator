@@ -19,7 +19,7 @@
     "@angular/platform-browser-dynamic": "^18.1.0",
     "@angular/router": "^18.1.0",
     "rxjs": "~7.8.0",
-    "tslib": "^2.3.0",
+    "tslib": "^2.6.3",
     "zone.js": "~0.14.3"
   },
   "devDependencies": {
@@ -38,9 +38,9 @@
     "typescript": "~5.5.2"
   },
   "browser": {
-  "fs": false,
-  "os": false,
-  "path": false,
-  "url": false
- }
+    "fs": false,
+    "os": false,
+    "path": false,
+    "url": false
+  }
 }

@@ -1,0 +1,1 @@
+{"ast":null,"code":"'use strict';\n\nconst _default = require('./default.cjs');\nconst atrulePrelude = {\n  getNode: _default\n};\nmodule.exports = atrulePrelude;","map":null,"metadata":{},"sourceType":"script","externalDependencies":[]}

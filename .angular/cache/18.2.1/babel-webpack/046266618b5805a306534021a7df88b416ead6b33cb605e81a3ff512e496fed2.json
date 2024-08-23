@@ -1,0 +1,1 @@
+{"ast":null,"code":"'use strict';\n\nconst index = require('../node/index.cjs');\nconst config = {\n  node: index\n};\nmodule.exports = config;","map":null,"metadata":{},"sourceType":"script","externalDependencies":[]}

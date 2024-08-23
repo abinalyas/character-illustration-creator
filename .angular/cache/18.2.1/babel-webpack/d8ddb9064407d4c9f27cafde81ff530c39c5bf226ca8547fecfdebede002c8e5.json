@@ -1,0 +1,1 @@
+{"ast":null,"code":"'use strict';\n\nconst media = {\n  parse: {\n    prelude() {\n      return this.createSingleNodeList(this.MediaQueryList());\n    },\n    block() {\n      return this.Block(false);\n    }\n  }\n};\nmodule.exports = media;","map":null,"metadata":{},"sourceType":"script","externalDependencies":[]}

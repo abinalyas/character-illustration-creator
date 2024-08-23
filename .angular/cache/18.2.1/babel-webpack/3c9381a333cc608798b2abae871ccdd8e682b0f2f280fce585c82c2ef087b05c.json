@@ -1,0 +1,1 @@
+{"ast":null,"code":"'use strict';\n\nconst fontFace = {\n  parse: {\n    prelude: null,\n    block() {\n      return this.Block(true);\n    }\n  }\n};\nmodule.exports = fontFace;","map":null,"metadata":{},"sourceType":"script","externalDependencies":[]}

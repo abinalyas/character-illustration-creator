@@ -1,0 +1,1 @@
+{"ast":null,"code":"'use strict';\n\n// https://drafts.csswg.org/css-cascade-5/\nconst cssWideKeywords = ['initial', 'inherit', 'unset', 'revert', 'revert-layer'];\nexports.cssWideKeywords = cssWideKeywords;","map":null,"metadata":{},"sourceType":"script","externalDependencies":[]}

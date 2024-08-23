@@ -1,0 +1,1 @@
+{"ast":null,"code":"'use strict';\n\nconst cssTree = require('css-tree');\nconst keyframes = require('./atrule/keyframes.cjs');\nfunction Atrule(node) {\n  // compress @keyframe selectors\n  if (cssTree.keyword(node.name).basename === 'keyframes') {\n    keyframes(node);\n  }\n}\nmodule.exports = Atrule;","map":null,"metadata":{},"sourceType":"script","externalDependencies":[]}

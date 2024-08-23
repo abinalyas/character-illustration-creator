@@ -1,0 +1,1 @@
+{"ast":null,"code":"'use strict';\n\n// legacy IE function\n// expression( <any-value> )\nfunction expressionFn() {\n  return this.createSingleNodeList(this.Raw(this.tokenIndex, null, false));\n}\nmodule.exports = expressionFn;","map":null,"metadata":{},"sourceType":"script","externalDependencies":[]}

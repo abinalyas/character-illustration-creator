@@ -1,0 +1,1 @@
+{"ast":null,"code":"'use strict';\n\nfunction cleanWhitespace(node, item, list) {\n  list.remove(item);\n}\nmodule.exports = cleanWhitespace;","map":null,"metadata":{},"sourceType":"script","externalDependencies":[]}

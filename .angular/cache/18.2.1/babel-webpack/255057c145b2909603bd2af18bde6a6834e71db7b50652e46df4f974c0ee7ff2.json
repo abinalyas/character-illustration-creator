@@ -1,0 +1,1 @@
+{"ast":null,"code":"'use strict';\n\nconst data = require('../../data.cjs');\nconst index = require('../node/index.cjs');\nconst lexerConfig = {\n  generic: true,\n  ...data,\n  node: index\n};\nmodule.exports = lexerConfig;","map":null,"metadata":{},"sourceType":"script","externalDependencies":[]}

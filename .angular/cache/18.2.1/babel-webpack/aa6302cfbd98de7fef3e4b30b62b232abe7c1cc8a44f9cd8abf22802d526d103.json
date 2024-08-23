@@ -1,0 +1,1 @@
+{"ast":null,"code":"'use strict';\n\nfunction cleanComment(data, item, list) {\n  list.remove(item);\n}\nmodule.exports = cleanComment;","map":null,"metadata":{},"sourceType":"script","externalDependencies":[]}

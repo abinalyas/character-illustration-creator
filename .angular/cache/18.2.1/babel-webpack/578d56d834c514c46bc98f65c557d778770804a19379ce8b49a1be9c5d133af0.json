@@ -1,0 +1,1 @@
+{"ast":null,"code":"'use strict';\n\nconst page = {\n  parse: {\n    prelude() {\n      return this.createSingleNodeList(this.SelectorList());\n    },\n    block() {\n      return this.Block(true);\n    }\n  }\n};\nmodule.exports = page;","map":null,"metadata":{},"sourceType":"script","externalDependencies":[]}

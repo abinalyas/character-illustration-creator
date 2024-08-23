@@ -1,0 +1,1 @@
+{"ast":null,"code":"'use strict';\n\nconst MIN_SIZE = 16 * 1024;\nfunction adoptBuffer(buffer = null, size) {\n  if (buffer === null || buffer.length < size) {\n    return new Uint32Array(Math.max(size + 1024, MIN_SIZE));\n  }\n  return buffer;\n}\nexports.adoptBuffer = adoptBuffer;","map":null,"metadata":{},"sourceType":"script","externalDependencies":[]}
