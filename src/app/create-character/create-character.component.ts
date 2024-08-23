@@ -1,4 +1,4 @@
-import { Component, ViewChild, ElementRef, AfterViewInit, Input, OnChanges, SimpleChanges, input } from '@angular/core';
+import { Component, ViewChild, ElementRef, AfterViewInit, Input, OnChanges, SimpleChanges, input, HostListener } from '@angular/core';
 import { SvgService } from '../svg.service';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { SvgOptimizerService } from '../svg-optimizer.service';
@@ -27,9 +27,14 @@ export class CreateCharacterComponent implements OnChanges {
   sitingY: number = 0;
   selectedTab: string = 'face';
 
+
   skinColors: string[] = ['#E98C7B', '#F4BCA4', '#FFB784', '#F3A396', '#B2674B'];
   topColors: string[] = ['#78A9FF','#EF5DA8','#F3BB9D'];
   pantColors: string[] = ['#001D6C','#EF5DA8'];
+
+  isVisible = false;
+  x = 0;
+  y = 0;
 
   showPopup = false;
   selectedBackground = 'default-background.svg';
@@ -60,7 +65,7 @@ export class CreateCharacterComponent implements OnChanges {
   faceSvg: string = 'body.svg';
   bodySvg: string = 'body.svg';
   leftHandSvg: string = 'left-hand.svg';
-  rightHandSvg: string = 'hands/Right-hand/right-hand-3.svg';
+  rightHandSvg: string | null = null;
   legsSvg: string = 'legs.svg';
   backgroundSvg: string = 'backgrounds/9.svg'
   svgContainerData: boolean =false;
@@ -97,7 +102,21 @@ export class CreateCharacterComponent implements OnChanges {
     await this.loadSvgSets(this.avaFacePaths, this.avaFaceSvgs);
     await this.loadSvgSets(this.jennaFacePaths, this.jennaFaceSvgs);
 
-    
+    this.selectedRightHand = this.rightHandSvgs[1].toString();
+    this.selectedLeftHand = this.leftHandSvgs[1].toString();
+    this.selectedBackground = this.backgroundSvgPaths[1];
+    this.selectedFace = this.faceSvgs[1].toString();
+
+  }
+
+  @HostListener('document:mousemove', ['$event'])
+  onMouseMove(event: MouseEvent) {
+    this.x = event.clientX;
+    this.y = event.clientY;
+  }
+
+  toggleVisibility() {
+    this.isVisible = !this.isVisible;
   }
 
   async ngOnChanges(changes: SimpleChanges) {
@@ -141,14 +160,14 @@ export class CreateCharacterComponent implements OnChanges {
   
 
   private async loadInitialSvgs() {
-    this.backgroundSvg = await this.svgService.loadSvg('backgrounds/9.svg');
-    this.faceSvg = await this.svgService.loadSvg('face1.svg');
+    this.backgroundSvg = await this.svgService.loadSvg(this.backgroundSvgPaths[1]);
+    this.faceSvg = await this.svgService.loadSvg(this.faceSvgPaths[1]);
     this.faceSvg = await this.svgOptimizer.optimize(this.faceSvg);
     this.bodySvg = await this.svgService.loadSvg('body.svg');
     this.bodySvg = await this.svgOptimizer.optimize(this.bodySvg);
-    this.leftHandSvg = await this.svgService.loadSvg('hands/Left-hand/left-hand-1.svg');
+    this.leftHandSvg = await this.svgService.loadSvg(this.leftHandSvgPaths[1]);
     this.leftHandSvg = await this.svgOptimizer.optimize(this.leftHandSvg);
-    this.rightHandSvg = await this.svgService.loadSvg('hands/Right-hand/right-hand-3.svg');
+    this.rightHandSvg = await this.svgService.loadSvg(this.rightHandSvgPaths[1]);
     this.rightHandSvg = await this.svgOptimizer.optimize(this.rightHandSvg);
     this.legsSvg = await this.svgService.loadSvg('leg/standing.svg');
     this.legsSvg = await this.svgOptimizer.optimize(this.legsSvg);
@@ -164,6 +183,11 @@ export class CreateCharacterComponent implements OnChanges {
     } catch (error) {
       console.error('Error loading SVGs:', error);
     }
+  }
+
+  closePopup(event: Event) {
+    event.stopPropagation();
+    this.showPopup = false;
   }
 
   async onFaceClick(face: SafeHtml) {

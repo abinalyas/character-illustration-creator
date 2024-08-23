@@ -1,9 +1,12 @@
 <div class="main-container">
     <!-- Left Navigation Menu -->
     <div class="left-menu">
+      <div class="logo">
+        <img src="/logo.svg">
+      </div>
         <div>
             <div class="menu-option" id="standing-option" (click)="postureSelection('standing')">
-                <div class="left-menu-itemes" [style]="standingSelected ? 'box-shadow: 0px 37px 86px -8px rgba(209,12,12,1); backgroud-color:white' : ''">
+                <div class="left-menu-itemes" [style]="standingSelected ? 'box-shadow: 0 0 0 0px #ff3e3e, 0 16px 19px rgba(166, 99, 99, .28); backgroud-color:white' : ''">
                     <!-- Outline Circle SVG -->
                     <svg class="outline-circle" id="cycling-circle" width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <circle 
@@ -27,12 +30,12 @@
                         [attr.fill]="standingSelected ? '#FF0000' : '#363D61'"></path>
                     </svg>
                 </div>
-              <div [style]="standingSelected ? 'opacity : 1; font-weight:500' : 'opacity : 0.5'" style="display: flex; padding: 5px 0px;">Standing</div>
+              <div class="left-menu-item-name" [style]="standingSelected ? 'opacity : 1; font-weight:500' : 'opacity : 0.5'" style="display: flex; padding: 5px 0px;">Standing</div>
             </div>
           
             <div class="menu-option" id="walking-option" (click)="postureSelection('walking')">
               <!-- Outline Circle SVG -->
-               <div class="left-menu-itemes" [style]="walkingSelected ? 'box-shadow: 0px 37px 86px -8px rgba(209,12,12,1); backgroud-color:white' : ''">
+               <div class="left-menu-itemes" [style]="walkingSelected ? 'box-shadow: 0 0 0 0px #ff3e3e, 0 16px 19px rgba(166, 99, 99, .28); backgroud-color:white' : ''">
                 <svg class="outline-circle" id="walking-circle" width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <circle 
                     class="menu-circle" 
@@ -55,11 +58,11 @@
                   </svg>
                </div>
               
-              <div [style]="walkingSelected ? 'opacity : 1; font-weight:500' : 'opacity : 0.5'" style="display: flex; padding: 5px 0px;" >Walking</div>
+              <div class="left-menu-item-name" [style]="walkingSelected ? 'opacity : 1; font-weight:500' : 'opacity : 0.5'" style="display: flex; padding: 5px 0px;" >Walking</div>
             </div>
     
             <div class="menu-option" id="siting-option" (click)="postureSelection('siting')">
-                <div class="left-menu-itemes" [style]="sitingSelected ? 'box-shadow: 0px 37px 86px -8px rgba(209,12,12,1); backgroud-color:white' : ''">
+                <div class="left-menu-itemes" [style]="sitingSelected ? 'box-shadow: 0 0 0 0px #ff3e3e, 0 16px 19px rgba(166, 99, 99, .28); backgroud-color:white' : ''">
                     <!-- Outline Circle SVG -->
                     <svg class="outline-circle" id="walking-circle" width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <circle 
@@ -82,7 +85,7 @@
                         [attr.fill]="sitingSelected ? '#FF0000' : '#363D61'"></path>
                       </svg>
                 </div>
-                <div [style]="sitingSelected ? 'opacity : 1; font-weight:500' : 'opacity : 0.5'" style="display: flex; padding: 5px 0px;">Siting</div>
+                <div class="left-menu-item-name" [style]="sitingSelected ? 'opacity : 1; font-weight:500' : 'opacity : 0.5'" style="display: flex; padding: 5px 0px;">Siting</div>
             </div>
         </div>
     </div>
@@ -91,8 +94,8 @@
     <!-- Center Content Area -->
     <div class="center-content">
       
-      <div class="gender-selection" style="margin-top: 30px;">
-        <div [style]="isGenderSelected('male') ? 'box-shadow: 0px 37px 86px -8px rgba(209,12,12,1); border-radius:50%' : ''" class="gender-option" (click)="genderSelection('male')">
+      <div class="gender-selection" style="margin-top: 50px;">
+        <div [style]="isGenderSelected('male') ? 'box-shadow: 0 0 0 0px #ff3e3e, 0 16px 19px rgba(166, 99, 99, .28); border-radius:50%' : ''" class="gender-option" (click)="genderSelection('male')">
             <!-- Outline Circle SVG -->
              <div>
                 <svg class="outline-circle" width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -122,7 +125,7 @@
             
         <div [style]="isGenderSelected('male') ? 'opacity : 1' : 'opacity : 0.5'" class="gender-name">Male</div>
         </div>
-        <div [style]="isGenderSelected('female') ? 'box-shadow: 0px 37px 86px -8px rgba(209,12,12,1); border-radius:50%' : ''" class="gender-option" (click)="genderSelection('female')">
+        <div [style]="isGenderSelected('female') ? 'box-shadow: 0 0 0 0px #ff3e3e, 0 16px 19px rgba(166, 99, 99, .28); border-radius:50%' : ''" class="gender-option" (click)="genderSelection('female')">
             <div>
                 <!-- Outline Circle SVG -->
                 <svg class="outline-circle" width="44" height="44" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -153,9 +156,9 @@
         </div>
       </div>
 
-      <div *ngIf='selectedGender == "male"' style="display:flex; margin-top: 70px; margin-right: 65px; height:100px; width: 100%;" id="face-container">
+      <div *ngIf='selectedGender == "male"' style="display:flex; margin-top: 60px; height:100px; width: 100%;" id="face-container">
         <div *ngFor="let malefacePng of maleFacePngs; let i = index" class="svg-wrapper character-options" (click)="onFaceClick(i)">
-            <div class="charcter-selected" [style]="isFaceSelected(i) ? 'box-shadow: 14px 14px 86px -12px rgba(209,12,12,0.51);' : 'none'" >
+            <div class="character-selected" [style]="isFaceSelected(i) ? 'box-shadow: 0 0 0 0px #ff3e3e, 0 16px 19px rgba(166, 99, 99, .28);' : 'none'" >
                 <svg class="outline-circle" width="85" height="85" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <circle
                       cx="22"
@@ -171,13 +174,13 @@
                   </svg>
                   <img class="character-icon" style="height: 65px;" [src]="malefacePng">
             </div>
-            <div [style]="isFaceSelected(i) ? 'opacity : 1' : 'opacity : 0.5'" style="position: relative;left: 30px; font-weight: 600;">{{maleFaceNames[i]}}</div>
+            <div [style]="isFaceSelected(i) ? 'opacity : 1' : 'opacity : 0.5'" style="position: relative;left: 30px; font-weight: 600; font-size: 14px;">{{maleFaceNames[i]}}</div>
         </div>
       </div>
 
-      <div *ngIf='selectedGender == "female"' style="display:flex; margin-top: 80px; margin-right: 65px; height:100px; width: 100%;" id="face-container">
+      <div *ngIf='selectedGender == "female"' style="display:flex; margin-top: 60px; height:100px; width: 100%;" id="face-container">
         <div *ngFor="let femaleFacePng of femaleFacePngs; let i = index" class="svg-wrapper character-options" (click)="onFaceClick(i)">
-            <div class="charcter-selected" [style]="isFaceSelected(i) ? 'box-shadow: 14px 14px 86px -12px rgba(209,12,12,0.51);' : 'none'" >
+            <div class="character-selected" [style]="isFaceSelected(i) ? 'box-shadow: 0 0 0 0px #ff3e3e, 0 16px 19px rgba(166, 99, 99, .28);' : 'none'" >
                 <svg class="outline-circle" width="85" height="85" viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <circle
                       cx="22"
@@ -193,7 +196,7 @@
                   </svg>
                   <img class="character-icon" style="height: 65px;" [src]="isFaceSelected(i) ? feamleFaceSelectedPngs[i] : femaleFacePng ">
             </div>
-            <div [style]="isFaceSelected(i) ? 'opacity : 1' : 'opacity : 0.5'" style="position: relative;left: 30px; font-weight: 600;">{{femaleFaceNames[i]}}</div>
+            <div [style]="isFaceSelected(i) ? 'opacity : 1' : 'opacity : 0.5'" style="position: relative;left: 30px; font-weight: 600; font-size: 14px;">{{femaleFaceNames[i]}}</div>
         </div>
       </div>
   

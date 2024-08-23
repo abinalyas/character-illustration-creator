@@ -2,6 +2,7 @@
 .main-container {
     display: flex;
     height: 100vh;
+    background: #fff url(/background-grid.jpg) no-repeat 50% / cover;
   }
   
  /* Left Menu */
@@ -14,6 +15,19 @@
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
+}
+
+.logo {
+    position: absolute;
+    top: 50px;
+    left: 50px;
+    scale: 1.2;
+}
+
+.left-menu-item-name {
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 8px;
 }
 
 /* Menu Option */
@@ -37,7 +51,7 @@
 
 /* Rotate the circle on hover */
 .menu-option:hover .outline-circle {
-    animation: rotateCircle 2s linear infinite;
+    /* animation: rotateCircle 2s linear infinite; */
     stroke: #FF0000;
 }
 
@@ -95,6 +109,7 @@
     margin: 0px 25px;
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 
 .character-options{
@@ -154,6 +169,8 @@
     left: 5px;
     font-weight: 600;
     /* line-height: 8px; */
+    font-size: 13px;
+    /* line-height: 8px; */
     /* opacity: .2; */
     transition: opacity .375s;
     pointer-events: all;
@@ -161,11 +178,11 @@
 
 /* Rotate the circle on hover */
 .gender-option:hover .outline-circle {
-    animation: rotateCircle 2s linear infinite;
+    animation: rotateCircle 10s linear infinite;
 }
 
 .character-options:hover .outline-circle {
-    animation: rotateCircle 2s linear infinite;
+    animation: rotateCircle 10s linear infinite;
     stroke: #FF0000;
 
 }
@@ -311,7 +328,7 @@
 
 /* Rotate the circle on hover */
 .menu-option:hover .outline-circle {
-    animation: rotateCircle 2s linear infinite;
+    animation: rotateCircle 10s linear infinite;
 }
 
 /* Hover effect on icon */
@@ -354,6 +371,7 @@
   
   .color-picker button.selected {
     border: 3px solid red;
+    box-shadow: 0 0 0 0px #ff3e3e, 0 16px 19px rgba(166, 99, 99, .28);
   }
 
   .tabs-container {
@@ -380,17 +398,18 @@
     border-left-color: #ff3e3e;
     background-color: #ffecec;
     color: #363d61;
-    box-shadow: 0 2px 8px rgba(255, 107, 107, 0.2);
+    box-shadow: 0 0 0 0px #ff3e3e, 0 16px 19px rgba(166, 99, 99, .28);
   }
   
   .tab-icon {
-    font-size: 1.5rem;
+    font-size: 18px;
     margin-right: 15px;
   }
   
   .tab-heading {
-    font-size: 1.1rem;
-    font-weight: bold;
+    font-weight: 500;
+    font-size: 13px;
+    /* font-weight: bold; */
   }
   
   .tab:hover {
@@ -445,17 +464,16 @@
     transform: scale(0.95);
   }
 
-  .charcter-selected{
+  .character-selected{
     width: 82px;
     height: 82px;
     border-radius: 50%;
-    
   }
   
   .left-menu-itemes{
     height: 45px; 
     width: 45px; 
     border-radius: 50%;
-    margin-left: 10px;
+    margin-right: 10px;
   }
   

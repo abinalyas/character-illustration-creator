@@ -37,6 +37,9 @@
     position: relative;
     justify-content: center;
     align-items: center;
+    height: 100%;
+    /* background: url(/background-grid-image.png) no-repeat 50% / cover; */
+    width: 65%;
   }
   
   .download-options {
@@ -52,8 +55,24 @@
     z-index: 1000; /* Ensure it's above other elements */
   }
   
-  .svg-wrapper-container:hover .download-options {
-    display: block; /* Show on hover */
+  .character-svg:hover {
+    cursor: url('/cursor.svg'), auto;;
+  }
+
+  .cursor-text {
+    /* ... existing styles ... */
+    position: fixed; /* Add this if not already present */
+    pointer-events: none; /* Prevents the text from interfering with mouse events */
+    transition: opacity 0.3s ease-in-out;
+    opacity: 1;
+    color: #363d61;
+    font-size: 12px;
+    font-weight: 600;
+    /* -webkit-text-stroke: 0.5px white; */
+  }
+  
+  .cursor-text.hidden {
+    opacity: 0;
   }
   
   .download-options button {
@@ -89,12 +108,12 @@
     border: 1px solid #ccc;
     /* background-color: white; */
     /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
-    padding: 10px;
+    /* padding: 10px; */
     z-index: 10;
     background: #fff;
     box-shadow: 0 16px 19px rgba(166, 99, 99, .15);
     border-radius: 8px;
-    width: 150px;
+    width: 250px;
   }
   
   .backdrop-option {
@@ -102,17 +121,21 @@
     cursor: pointer;
     display: flex;
     padding: 5px;
+    border: 3px solid #eee;
+    border-radius: 6px;
+    margin: 5px;
   }
   
   .backdrop-option img {
-    width: 100px;
-    height: 100px;
+    width: 80px;
+    height: 80px;
     object-fit: cover;
     border-radius: 10px;
   }
   
-  .backdrop-option:hover img {
-    border: 2px solid rgb(181, 181, 181);
+  .backdrop-option:hover {
+    /* border: 2px solid rgb(181, 181, 181); */
+    transform: scale(1.05);
   }
 
   .popup__head {
@@ -123,7 +146,8 @@
     font-size: 12px;
     font-weight: 600;
     align-items: center;
-    cursor: move;
+    /* cursor: move; */
+    justify-content: space-between;
 }
 
 .popup__body {
@@ -133,7 +157,9 @@
   overflow: auto;
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  /* margin-top: 10px; */
+  margin: 10px 10px;
+  /* justify-content: center; */
 }
   
 /* new css changes */
@@ -141,7 +167,7 @@
 .content {
   /* zoom: 0.5; */
   height: 500px;
-  width: 190px;
+  width: 200px;
   /* display: flex; */
   flex-wrap: wrap;
 }
@@ -206,7 +232,7 @@
   margin: 12px 12px;
   cursor: pointer;
   transition: transform 0.3s ease;
-  border: 2px solid red; 
+  border: 10px solid #eee; 
   border-radius: 20px;
 }
 
@@ -217,7 +243,7 @@
 @media (max-width: 2600px) {
   .character-svg {
     /* transform: scale(0.6); */
-    zoom: 0.6;
+    zoom: 0.55;
   }
 }
 

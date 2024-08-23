@@ -7,15 +7,26 @@
       <button (click)="downloadPNG()">Download PNG</button>
     </div>
   </div> -->
-  <div class="svg-wrapper-container" (mouseenter)="showPopup = true" (mouseleave)="showPopup = false">
-    <div class="character-svg" id="svg-container"></div>
+  <!-- <div *ngIf="selectedBackground" class="svg-wrapper-container" (mouseenter)="showPopup = true" (mouseleave)="showPopup = false"> -->
+  <div class="svg-wrapper-container" (click)="showPopup = true">
+
+  <div *ngIf="isVisible && !showPopup" class="cursor-text" [class.hidden]="!isVisible" [style.left.px]="x + 50" [style.top.px]="y + 20">
+      change background
+  </div>
+
+    <div class="character-svg" id="svg-container" (mouseenter)="isVisible = true" (mouseleave)="isVisible = false"></div>
   
     <div *ngIf="showPopup" class="popup">
     <!-- <div class="popup"> -->
-      <div class="popup__head">Choose background</div>
+      <div class="popup__head">
+        <div>Choose background</div>
+        <div style="padding: 5px; cursor: pointer;" (click)="closePopup($event) ">
+          <svg width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M1.70711 0.292893C1.31658 -0.0976311 0.683418 -0.0976311 0.292894 0.292893C-0.0976301 0.683417 -0.0976301 1.31658 0.292894 1.70711L2.58579 4L0.292894 6.29289C-0.09763 6.68342 -0.09763 7.31658 0.292894 7.70711C0.683419 8.09763 1.31658 8.09763 1.70711 7.70711L4 5.41421L6.29289 7.70711C6.68342 8.09763 7.31658 8.09763 7.70711 7.70711C8.09763 7.31658 8.09763 6.68342 7.70711 6.29289L5.41421 4L7.70711 1.70711C8.09763 1.31658 8.09763 0.683417 7.70711 0.292893C7.31658 -0.0976311 6.68342 -0.0976311 6.29289 0.292893L4 2.58579L1.70711 0.292893Z" fill="#363D61"></path></svg>
+        </div>
+      </div>
       <div class="popup__body">
-        <div class="backdrop-option" *ngFor="let option of backgroundOptions" (click)="selectBackground(option)">
-          <img [style]="selectedBackground == option.image ? 'border: 3px solid red;' : ''" [src]="option.image" alt="Background option">
+        <div [style]="selectedBackground == option.image ? 'border: 3px solid red;' : ''" class="backdrop-option" *ngFor="let option of backgroundOptions" (click)="selectBackground(option)">
+          <img [src]="option.image" alt="Background option">
       </div>
     </div>
     </div>
@@ -30,37 +41,40 @@
     <div class="tabs-container">
       <div class="tab" [class.selected]="selectedTab === 'face'" (click)="selectTab('face')">
         <!-- <img src="" alt="Face" class="tab-icon"> -->
-        <span>Face Expression</span>
+        <span style="font-size: 14px; font-weight: 500;">Face Expression</span>
       </div>
       <div class="tab" [class.selected]="selectedTab === 'rightHand'" (click)="selectTab('rightHand')">
         <!-- <img src="" alt="Right Hand" class="tab-icon"> -->
-        <span>Right Hand Posture</span>
+        <span style="font-size: 14px; font-weight: 500;">Right Hand Posture</span>
       </div>
       <div class="tab" [class.selected]="selectedTab === 'leftHand'" (click)="selectTab('leftHand')">
         <!-- <img src="" alt="Left Hand" class="tab-icon"> -->
-        <span>Left Hand Posture</span>
+        <span style="font-size: 14px; font-weight: 500;">Left Hand Posture</span>
       </div>
     </div>
     
     <div class="content-container">
       <div *ngIf="selectedTab === 'face'" class="content">
+        <!-- {{selectedFace}} -->
         <div *ngIf="selectedCharacter === 'ava'" class="svg-wrapper">
-          <div *ngFor="let avaFace of avaFaceSvgs" [innerHTML]="avaFace" class="svg-item" (click)="onFaceClick(avaFace)"></div>
+          <div  style="padding: 35px;" [style]="selectedFace == avaFace ? 'border: 10px solid red; box-shadow: 0 0 0 0px #ff3e3e, 0 16px 19px rgba(166, 99, 99, .28);' : ''" *ngFor="let avaFace of avaFaceSvgs" [innerHTML]="avaFace" class="svg-item" (click)="onFaceClick(avaFace)"></div>
         </div>
         <div *ngIf="selectedCharacter === 'jenna'" class="svg-wrapper">
-          <div *ngFor="let jennaFace of jennaFaceSvgs" [innerHTML]="jennaFace" class="svg-item" (click)="onFaceClick(jennaFace)"></div>
+          <div [style]="selectedFace == jennaFace ? 'border: 10px solid red; box-shadow: 0 0 0 0px #ff3e3e, 0 16px 19px rgba(166, 99, 99, .28);' : ''" *ngFor="let jennaFace of jennaFaceSvgs" [innerHTML]="jennaFace" class="svg-item" (click)="onFaceClick(jennaFace)"></div>
         </div>
       </div>
   
       <div *ngIf="selectedTab === 'rightHand'" class="content">
+        <!-- {{selectedRightHand}} -->
         <div class="svg-wrapper">
-          <img *ngFor="let rightHandPng of rightHandPngPaths; let i = index" [src]="rightHandPng" class="svg-item" (click)="onHandClick(rightHandSvgs[i], 'right')"/>
+          <img [style]="selectedRightHand == rightHandSvgs[i] ? 'border: 10px solid red; box-shadow: 0 0 0 0px #ff3e3e, 0 16px 19px rgba(166, 99, 99, .28);' : ''" *ngFor="let rightHandPng of rightHandPngPaths; let i = index" [src]="rightHandPng" class="svg-item" (click)="onHandClick(rightHandSvgs[i], 'right')"/>
         </div>
       </div>
   
       <div *ngIf="selectedTab === 'leftHand'" class="content">
+        <!-- {{selectedLeftHand}} -->
         <div class="svg-wrapper">
-          <img *ngFor="let leftHandPng of leftHandPngPaths; let i = index" [src]="leftHandPng" class="svg-item" (click)="onHandClick(leftHandSvgs[i], 'left')"/>
+          <img [style]="selectedLeftHand == leftHandSvgs[i] ? 'border: 10px solid red; box-shadow: 0 0 0 0px #ff3e3e, 0 16px 19px rgba(166, 99, 99, .28);' : ''" *ngFor="let leftHandPng of leftHandPngPaths; let i = index" [src]="leftHandPng" class="svg-item" (click)="onHandClick(leftHandSvgs[i], 'left')"/>
         </div>
       </div>
     </div>
