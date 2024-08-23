@@ -9,6 +9,7 @@ import { HttpClient } from '@angular/common/http';
   templateUrl: './create-character.component.html',
   styleUrls: ['./create-character.component.css']
 })
+
 export class CreateCharacterComponent implements OnChanges {
   @Input() faceSvg1: string[] = [];
   @Input() assetsColor: string[] = [];
