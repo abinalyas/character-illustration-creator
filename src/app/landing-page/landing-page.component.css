@@ -2,7 +2,7 @@
 .main-container {
     display: flex;
     height: 100vh;
-    background: #fff url(/background-grid.jpg) no-repeat 50% / cover;
+    background: #fff url(public/background-grid.jpg) no-repeat 50% / cover;
   }
   
  /* Left Menu */
