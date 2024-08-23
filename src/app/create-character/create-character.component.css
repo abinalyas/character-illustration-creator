@@ -56,7 +56,7 @@
   }
   
   .character-svg:hover {
-    cursor: url('/cursor.svg'), auto;;
+    cursor: url('public/cursor.svg'), auto;;
   }
 
   .cursor-text {
