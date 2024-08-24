@@ -8,13 +8,22 @@
     </div>
   </div> -->
   <!-- <div *ngIf="selectedBackground" class="svg-wrapper-container" (mouseenter)="showPopup = true" (mouseleave)="showPopup = false"> -->
-  <div class="svg-wrapper-container" (click)="showPopup = true">
-
-  <div *ngIf="isVisible && !showPopup" class="cursor-text" [class.hidden]="!isVisible" [style.left.px]="x + 50" [style.top.px]="y + 20">
-      change background
-  </div>
-
-    <div class="character-svg" id="svg-container" (mouseenter)="isVisible = true" (mouseleave)="isVisible = false"></div>
+  <div class="svg-wrapper-container">
+    <div *ngIf="isVisible && !showPopup" class="cursor-text" [class.hidden]="!isVisible" [style.left.px]="x + 50" [style.top.px]="y + 20">
+        change background
+    </div>
+    <div *ngIf="selectedCharacter !== 'ava' && selectedCharacter !== 'jenna' && selectedCharacter !== 'sara' && genderSelected == 'male'">
+      <img style="height: 160px;" [src]="maleFacePath()"/>  
+          <div style="padding-left: 0px; font-weight: 500;">
+            Abin's not interested in us right now—he's too busy with Ava! 😅 <br>
+            But hopefully, he’ll come back to us soon! 🤞</div>
+    </div>
+    <div *ngIf="selectedCharacter !== 'ava' && selectedCharacter !== 'jenna' && selectedCharacter !== 'sara' && genderSelected == 'female'">
+      <img *ngFor="let femaleFace of femaleFacePngs" style="height: 80px;  padding: 10px 10px;" [src]="femaleFace"/>  
+      <div style="padding-left: 0px; font-weight: 500;">
+        Choose one of us from top ☝️</div>
+    </div>
+    <div class="character-svg" id="svg-container" (click)="showPopup = true" (mouseenter)="isVisible = true" (mouseleave)="isVisible = false"></div>
   
     <div *ngIf="showPopup" class="popup">
     <!-- <div class="popup"> -->
@@ -51,6 +60,18 @@
         <!-- <img src="" alt="Left Hand" class="tab-icon"> -->
         <span style="font-size: 14px; font-weight: 500;">Left Hand Posture</span>
       </div>
+      <div class="tab" [class.selected]="selectedTab === 'leg'" (click)="selectTab('leg')">
+        <!-- <img src="" alt="Left Hand" class="tab-icon"> -->
+        <span style="font-size: 14px; font-weight: 500;">Leg Posture</span>
+      </div>
+      <div class="tab" [class.selected]="selectedTab === 'logo'" (click)="selectTab('logo')">
+        <!-- <img src="" alt="Left Hand" class="tab-icon"> -->
+        <span style="font-size: 14px; font-weight: 500;">Add logo</span>
+      </div>
+      <div class="tab" [class.selected]="selectedTab === 'background'" (click)="selectTab('background')">
+        <!-- <img src="" alt="Left Hand" class="tab-icon"> -->
+        <span style="font-size: 14px; font-weight: 500;">Custom background</span>
+      </div>
     </div>
     
     <div class="content-container">
@@ -58,6 +79,12 @@
         <!-- {{selectedFace}} -->
         <div *ngIf="selectedCharacter === 'ava'" class="svg-wrapper">
           <div  style="padding: 35px;" [style]="selectedFace == avaFace ? 'border: 10px solid red; box-shadow: 0 0 0 0px #ff3e3e, 0 16px 19px rgba(166, 99, 99, .28);' : ''" *ngFor="let avaFace of avaFaceSvgs" [innerHTML]="avaFace" class="svg-item" (click)="onFaceClick(avaFace)"></div>
+        </div>
+        <div *ngIf="selectedCharacter === 'sara'" >
+          <img style="height: 80px; padding-top: 100px; padding-left: 10px;" [src]="faceSvgPaths[1]"/>  
+          <div style="padding-left: 0px;">
+            Feature coming soon!!! Thanks for checking out 😍
+          </div>
         </div>
         <div *ngIf="selectedCharacter === 'jenna'" class="svg-wrapper">
           <div [style]="selectedFace == jennaFace ? 'border: 10px solid red; box-shadow: 0 0 0 0px #ff3e3e, 0 16px 19px rgba(166, 99, 99, .28);' : ''" *ngFor="let jennaFace of jennaFaceSvgs" [innerHTML]="jennaFace" class="svg-item" (click)="onFaceClick(jennaFace)"></div>
@@ -75,6 +102,29 @@
         <!-- {{selectedLeftHand}} -->
         <div class="svg-wrapper">
           <img [style]="selectedLeftHand == leftHandSvgs[i] ? 'border: 10px solid red; box-shadow: 0 0 0 0px #ff3e3e, 0 16px 19px rgba(166, 99, 99, .28);' : ''" *ngFor="let leftHandPng of leftHandPngPaths; let i = index" [src]="leftHandPng" class="svg-item" (click)="onHandClick(leftHandSvgs[i], 'left')"/>
+        </div>
+      </div>
+
+      <div *ngIf="selectedTab === 'leg'" class="content">
+        <img style="height: 80px; padding-top: 100px; padding-left: 10px;" [src]="avaFacePaths[0]"/>  
+        <div style="padding-left: 0px;">
+          Feature coming soon!!! Thanks for checking out 😍
+        </div>
+      </div>
+
+      <div *ngIf="selectedTab === 'logo'" class="content">
+        <!-- {{selectedLeftHand}} -->
+        <img style="height: 80px; padding-top: 100px; padding-left: 10px;" [src]="avaFacePaths[0]"/>  
+        <div style="padding-left: 0px;">
+          Feature coming soon!!! Thanks for checking out 😍
+        </div>
+      </div>
+
+      <div *ngIf="selectedTab === 'background'" class="content">
+        <!-- {{selectedLeftHand}} -->
+        <img style="height: 80px; padding-top: 100px; padding-left: 10px;" [src]="avaFacePaths[0]"/>  
+        <div style="padding-left: 0px;">
+          Feature coming soon!!! Thanks for checking out 😍
         </div>
       </div>
     </div>

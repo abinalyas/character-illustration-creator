@@ -18,6 +18,10 @@ export class LandingPageComponent {
   selectedSkinColor: string | null = null;
   selectedTopColor: string | null = null;
   selectedPantColor: string | null = null;
+  selectedHairColor: string | null = null;
+  selectedShoeColor: string | null = null;
+
+
   selectedTab: string = "skin";
 
 
@@ -36,12 +40,13 @@ export class LandingPageComponent {
   faemaleFaceDeselectedPngs = ['face/female/face-1-deselected.png','face/female/face-2-deselected.png','face/female/face-3-deselected.png']
   avaFacePaths = ['face/female/Ava/Ava-1.svg','face/female/Ava/Ava-2.svg','face/female/Ava/Ava-3.svg','face/female/Ava/Ava-4.svg','face/female/Ava/Ava-5.svg','face/female/Ava/Ava-6.svg','face/female/Ava/Ava-7.svg'];
   
-  maleFaceNames = ['Bob','Rohan']
+  maleFacePngs = ['face/male/face-1.png','face/male/face-2.png','face/male/face-3.png','face/male/face-4.png','face/male/face-5.png']
+  
+  maleFaceNames = ['Tim','Adam','Jimmy','Rohan','Bob'];
   femaleFaceNames = ['Ava','Sara','Anne']
 
-  maleFacePngs = ['face/female/face-1.png','face/female/face-2.png']
-  maleFaceSelectedPngs = ['face/female/face-1-selected.png','face/female/face-2-selected.png','face/female/face-3-selected.png']
-  maleFaceDeselectedPngs = ['face/female/face-1-deselected.png','face/female/face-2-deselected.png','face/female/face-3-deselected.png']
+  maleFaceSelectedPngs = ['face/male/face-1.png','face/male/face-2.png','face/male/face-3.png']
+  maleFaceDeselectedPngs = ['face/male/face-1.png','face/male/face-2.png','face/male/face-3.png']
 
   // The index of the selected face
   selectedFaceIndex: number | null = null;
@@ -49,6 +54,9 @@ export class LandingPageComponent {
   skinColors: string[] = ['#E98C7B', '#F4BCA4', '#FFB784', '#F3A396', '#B2674B'];
   topColors: string[] = ['#78A9FF','#EF5DA8','#F3BB9D'];
   pantColors: string[] = ['#001D6C','#EF5DA8'];
+  hairColors: string[] = ['#3E1A00','#000000','#E94B36'];
+  shoeColors: string[] = ['#3E1A00','#000000','#E94B36'];
+
 
 
   selectedFace1: any[] = [];
@@ -58,6 +66,8 @@ export class LandingPageComponent {
   @Output() faceSelected = new EventEmitter<string[]>();
   @Output() skinColorSelected = new EventEmitter<string[]>();
   @Output() postureSelected = new EventEmitter<string>();
+  @Output() genderSelected = new EventEmitter<string>();
+
 
 
 
@@ -131,6 +141,14 @@ export class LandingPageComponent {
         this.onColorChangeAssets.push('pant',color);
         this.selectedPantColor = color;
         break;
+      case "hair":
+        this.onColorChangeAssets.push('hair',color);
+        this.selectedHairColor = color;
+        break;
+      case "shoe":
+          this.onColorChangeAssets.push('shoe',color);
+          this.selectedShoeColor = color;
+
     }
     this.onColorChangeAssets = [element, color];
     console.log('Emitting:', this.onColorChangeAssets);
@@ -145,54 +163,103 @@ export class LandingPageComponent {
     // Set the selected face index
     this.selectedFaceIndex = index;
   
-    if(this.isGenderSelected('male') )
-    // Update the facePngs array based on the selected face
-    this.maleFacePngs = this.maleFacePngs.map((_, i) =>
-      i === index ? this.maleFaceSelectedPngs[i] : this.maleFaceDeselectedPngs[i]
-    );
+    if(this.isGenderSelected('male') ) {
+      // Update the facePngs array based on the selected face
+      // this.maleFacePngs = this.maleFacePngs.map((_, i) =>
+      //   i === index ? this.maleFaceSelectedPngs[i] : this.maleFaceDeselectedPngs[i]
+      // );
+    }
   
     // Fetch the corresponding SVG content for the selected face
 
     if(index == 0) {
-      const selectedCharacter = 'ava';
-      const svgPath = this.faceSvgPaths[index];
-      const svgContent = await this.fetchSvgContent(svgPath);
-      this.selectedFace1 = [svgContent,selectedCharacter];
-      this.selectedFace = svgContent; // If using string, otherwise use SafeHtml as discussed earlier.
-     
-      const emitCopy = [...this.selectedFace1];
-      console.log('Emitting:', emitCopy);
-      this.faceSelected.emit(emitCopy);
-      console.log('Emitted:', emitCopy);
-    }
-    else if(index == 1) {
-      const selectedCharacter = 'sara';
-      const svgPath = this.faceSvgPaths[index];
-      const svgContent = await this.fetchSvgContent(svgPath);
-      this.selectedFace1 = [svgContent,selectedCharacter];
-      this.selectedFace = svgContent; 
-
-      const emitCopy = [...this.selectedFace1];
-      console.log('Emitting:', emitCopy);
-      this.faceSelected.emit(emitCopy);
-      console.log('Emitted:', emitCopy);
+      if(this.isGenderSelected('female')) {
+        const selectedCharacter = 'ava';
+        const svgPath = this.faceSvgPaths[index];
+        const svgContent = await this.fetchSvgContent(svgPath);
+        this.selectedFace1 = [svgContent,selectedCharacter];
+        this.selectedFace = svgContent; // If using string, otherwise use SafeHtml as discussed earlier.
+       
+        const emitCopy = [...this.selectedFace1];
+        console.log('Emitting:', emitCopy);
+        this.faceSelected.emit(emitCopy);
+        console.log('Emitted:', emitCopy);
+      }
+      else {
+        const selectedCharacter = 'tim';
+        const svgContent = '';
+        this.selectedFace1 = [svgContent,selectedCharacter];
+        const emitCopy = [...this.selectedFace1];
+        console.log('Emitting:', emitCopy);
+        this.faceSelected.emit(emitCopy);
+        console.log('Emitted:', emitCopy);
+      }
       
     }
-    else {
-      const selectedCharacter = 'jenna';
-      const svgPath = this.faceSvgPaths[index];
-      const svgContent = await this.fetchSvgContent(svgPath);
+    else if(index == 1) {
+      if(this.isGenderSelected('female')) {
+        const selectedCharacter = 'sara';
+        const svgPath = this.faceSvgPaths[index];
+        const svgContent = await this.fetchSvgContent(svgPath);
+        this.selectedFace1 = [svgContent,selectedCharacter];
+        this.selectedFace = svgContent; 
+  
+        const emitCopy = [...this.selectedFace1];
+        console.log('Emitting:', emitCopy);
+        this.faceSelected.emit(emitCopy);
+        console.log('Emitted:', emitCopy);
+      }
+      else {
+        const selectedCharacter = 'adam';
+        const svgContent = '';
+        this.selectedFace1 = [svgContent,selectedCharacter];
+        const emitCopy = [...this.selectedFace1];
+        console.log('Emitting:', emitCopy);
+        this.faceSelected.emit(emitCopy);
+        console.log('Emitted:', emitCopy);
+      }  
+    }
+    else if(index ==2) {
+      if(this.isGenderSelected('female')) {
+        const selectedCharacter = 'jenna';
+        const svgPath = this.faceSvgPaths[index];
+        const svgContent = await this.fetchSvgContent(svgPath);
+        this.selectedFace1 = [svgContent,selectedCharacter];
+        this.selectedFace = svgContent; 
+  
+        const emitCopy = [...this.selectedFace1];
+        console.log('Emitting:', emitCopy);
+        this.faceSelected.emit(emitCopy);
+        console.log('Emitted:', emitCopy);
+      }
+      else {
+        const selectedCharacter = 'jimmy';
+        const svgContent = '';
+        this.selectedFace1 = [svgContent,selectedCharacter];
+        const emitCopy = [...this.selectedFace1];
+        console.log('Emitting:', emitCopy);
+        this.faceSelected.emit(emitCopy);
+        console.log('Emitted:', emitCopy);
+      }
+    }
+    else if(index ==3) {
+      const selectedCharacter = 'rohan';
+      const svgContent = '';
       this.selectedFace1 = [svgContent,selectedCharacter];
-      this.selectedFace = svgContent; 
-
       const emitCopy = [...this.selectedFace1];
       console.log('Emitting:', emitCopy);
       this.faceSelected.emit(emitCopy);
       console.log('Emitted:', emitCopy);
     }
-
-
-    
+    else {
+      const selectedCharacter = 'bob';
+      const svgContent = '';
+      this.selectedFace1 = [svgContent,selectedCharacter];
+      const emitCopy = [...this.selectedFace1];
+      console.log('Emitting:', emitCopy);
+      this.faceSelected.emit(emitCopy);
+      console.log('Emitted:', emitCopy);
+    }
 
     if(this.selectedSkinColor == null) {
       this.selectedSkinColor = this.skinColors[0];
@@ -216,6 +283,8 @@ export class LandingPageComponent {
 
   genderSelection(gender: string): void {
     this.selectedGender = gender;
+    this.selectedFaceIndex = null
+    this.genderSelected.emit(this.selectedGender);
   }
 
   leftMenuSelection(menuItem: string): void {

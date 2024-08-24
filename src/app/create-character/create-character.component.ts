@@ -14,6 +14,8 @@ export class CreateCharacterComponent implements OnChanges {
   @Input() faceSvg1: string[] = [];
   @Input() assetsColor: string[] = [];
   @Input() postureSelected: string = '';
+  @Input() genderSelected: string = '';
+
 
 
 
@@ -79,9 +81,12 @@ export class CreateCharacterComponent implements OnChanges {
 
   rightHandPngPaths = ['hands/Right-hand/png/right-hand-1.png', 'hands/Right-hand/png/right-hand-2.png', 'hands/Right-hand/png/right-hand-3.png', 'hands/Right-hand/png/right-hand-4.png'];
   leftHandPngPaths = ['hands/Left-hand/png/left-hand-1.png', 'hands/Left-hand/png/left-hand-2.png', 'hands/Left-hand/png/left-hand-3.png', 'hands/Left-hand/png/left-hand-4.png', 'hands/Left-hand/png/left-hand-5.png'];
+  
+  maleFacePngs = ['face/male/face-1.png','face/male/face-2.png','face/male/face-3.png','face/male/face-4.png','face/male/face-5.png']
+  femaleFacePngs = ['face/female/face-1.png','face/female/face-2.png','face/female/face-3.png']
 
-
-
+  maleFaceNames = ['tim','adam','jimmy','rohan','bob'];
+  femaleFaceNames = ['ava','sara','anne']
 
 
 
@@ -119,13 +124,42 @@ export class CreateCharacterComponent implements OnChanges {
     this.isVisible = !this.isVisible;
   }
 
+  maleFacePath() {
+    if(this.selectedCharacter) {
+      const index = this.maleFaceNames.indexOf(this.selectedCharacter);
+      if (index !== -1) {
+        console.log(this.maleFacePngs[index])
+        return this.maleFacePngs[index]; // Returns the index if found
+      } else {
+        return -1; // Returns -1 if the input is not found in the array
+      }
+    }
+    else {
+      return this.maleFacePngs[0];
+    }
+  }
+
   async ngOnChanges(changes: SimpleChanges) {
+
+    if (changes['genderSelected'] && this.genderSelected) {
+      this.svgContainerData =false;
+      const svgContainer = document.getElementById('svg-container');
+      if(svgContainer) {
+        svgContainer.innerHTML = '';
+        this.selectedCharacter = '';
+      }
+    }
+
     if (changes['faceSvg1'] && this.faceSvg1) {
+      this.selectedCharacter = this.faceSvg1[1];
       console.log('face changed:', this.faceSvg1);
         this.selectedFace = this.faceSvg1[0].toString();
         this.faceSvg = this.selectedFace;
-        this.selectedCharacter = this.faceSvg1[1];
-        this.combineAndDisplaySvgs();
+        console.log('hello' + this.selectedCharacter);
+        if(this.selectedFace && this.selectedFace !== '' ){
+          console.log('test passed',this.selectedCharacter);
+          this.combineAndDisplaySvgs();
+        }
     }
   
     if (changes['assetsColor'] && this.assetsColor) {

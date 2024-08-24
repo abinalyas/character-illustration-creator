@@ -194,7 +194,7 @@
                       [attr.stroke]="isFaceSelected(i) ? '#FF0000' : '#557593'"
                     ></circle>
                   </svg>
-                  <img class="character-icon" style="height: 65px;" [src]="isFaceSelected(i) ? feamleFaceSelectedPngs[i] : femaleFacePng ">
+                  <img class="character-icon" style="height: 65px;" [src]="isFaceSelected(i) ? feamleFaceSelectedPngs[i] : faemaleFaceDeselectedPngs[i] ">
             </div>
             <div [style]="isFaceSelected(i) ? 'opacity : 1' : 'opacity : 0.5'" style="position: relative;left: 30px; font-weight: 600; font-size: 14px;">{{femaleFaceNames[i]}}</div>
         </div>
@@ -202,7 +202,7 @@
   
       <!-- Character Display Area -->
       <div class="character-display" style="height: 100%; width: 100%; padding: 30px 0px;">
-        <app-create-character [faceSvg1]="selectedFace1" [assetsColor]="onColorChangeAssets" [postureSelected]="selectedPosture"></app-create-character>
+        <app-create-character [genderSelected]="selectedGender" [faceSvg1]="selectedFace1" [assetsColor]="onColorChangeAssets" [postureSelected]="selectedPosture"></app-create-character>
     </div>
     </div>
   
@@ -240,6 +240,20 @@
                       </button>
                     </div>
                 </div>
+                <div class="tab" [class.selected]="selectedTab === 'hair'" (click)="selectTab('hair')">
+                  <div class="tab-icon">👩‍🦰</div>
+                  <div class="tab-heading">Hair Color</div>
+                </div>
+                <div *ngIf="selectedTab === 'hair'" class="color-picker">
+                    <div>
+                     <button 
+                        *ngFor="let color of hairColors" 
+                        [style.backgroundColor]="color"
+                        (click)="onColorChange('hair', color)"
+                        [class.selected]="selectedHairColor === color">
+                      </button>
+                    </div>
+                </div>
                 <div class="tab" [class.selected]="selectedTab === 'top'" (click)="selectTab('top')">
                   <div class="tab-icon">👕</div>
                   <div class="tab-heading">Top Color</div>
@@ -268,6 +282,21 @@
                       </button>
                     </div>
                 </div>
+                <div class="tab" [class.selected]="selectedTab === 'shoe'" (click)="selectTab('shoe')">
+                  <div class="tab-icon">👟</div>
+                  <div class="tab-heading">Shoe Color</div>
+                </div>
+                <div *ngIf="selectedTab === 'shoe'" class="color-picker">
+                    <div>
+                     <button 
+                        *ngFor="let color of shoeColors" 
+                        [style.backgroundColor]="color"
+                        (click)="onColorChange('shoe', color)"
+                        [class.selected]="selectedShoeColor === color">
+                      </button>
+                    </div>
+                </div>
+               
               </div>
               
               <!-- <div class="color-picker">
