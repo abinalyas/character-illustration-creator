@@ -25,6 +25,8 @@ export class CreateCharacterComponent implements OnChanges {
   selectedSkinColor: string | null = null;
   selectedTopColor: string | null = null;
   selectedPantColor: string | null = null;
+  selectedHairColor: string | null = null;
+
   sitingX: number = 0;
   sitingY: number = 0;
   selectedTab: string = 'face';
@@ -61,6 +63,7 @@ export class CreateCharacterComponent implements OnChanges {
   rightHandSvgs: SafeHtml[] = [];
   leftHandSvgs: SafeHtml[] = [];
   backgroundSvgs: SafeHtml[] = [];
+  customLogo: any;
   avaFaceSvgs: SafeHtml[] = [];
   jennaFaceSvgs: SafeHtml[] = [];
 
@@ -88,6 +91,7 @@ export class CreateCharacterComponent implements OnChanges {
   maleFaceNames = ['tim','adam','jimmy','rohan','bob'];
   femaleFaceNames = ['ava','sara','anne']
 
+  svgPreview: SafeHtml | null = null;
 
 
   constructor(
@@ -139,6 +143,67 @@ export class CreateCharacterComponent implements OnChanges {
     }
   }
 
+  onSvgUpload(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    const file = input.files?.[0];
+  
+    if (file && file.type === 'image/svg+xml') {
+      const reader = new FileReader();
+      reader.onload = () => {
+        let svgContent = reader.result as string;
+  
+        // Create a temporary div to parse and manipulate the SVG content
+        const tempDiv = document.createElement('div');
+        tempDiv.innerHTML = svgContent;
+  
+        // Extract the SVG element
+        const svgElement = tempDiv.querySelector('svg') as SVGElement;
+  
+        if (svgElement) {
+          // Get the current width and height attributes
+          const widthAttr = svgElement.getAttribute('width');
+          const heightAttr = svgElement.getAttribute('height');
+  
+          if (widthAttr && heightAttr) {
+            const originalWidth = parseFloat(widthAttr);
+            const originalHeight = parseFloat(heightAttr);
+  
+            // Calculate aspect ratio
+            const aspectRatio = originalWidth / originalHeight;
+  
+            // Set max dimensions (100x100px)
+            let newWidth = 70;
+            let newHeight = 70;
+  
+            // Adjust width and height while maintaining aspect ratio
+            if (aspectRatio > 1) {
+              newHeight = newWidth / aspectRatio; // Landscape orientation
+            } else {
+              newWidth = newHeight * aspectRatio; // Portrait orientation
+            }
+  
+            // Apply new width and height to the SVG element
+            svgElement.setAttribute('width', newWidth.toString());
+            svgElement.setAttribute('height', newHeight.toString());
+  
+            // Optional: ensure `viewBox` is set to scale properly
+            const viewBox = svgElement.getAttribute('viewBox') || `0 0 ${originalWidth} ${originalHeight}`;
+            svgElement.setAttribute('viewBox', viewBox);
+          }
+  
+          // Update the preview with resized SVG content
+          this.svgPreview = this.sanitizer.bypassSecurityTrustHtml(svgElement.outerHTML);
+          this.customLogo = svgElement.outerHTML;
+          this.combineAndDisplaySvgs();
+        }
+      };
+      reader.readAsText(file);
+    } else {
+      alert('Please upload a valid SVG file.');
+    }
+  }
+  
+
   async ngOnChanges(changes: SimpleChanges) {
 
     if (changes['genderSelected'] && this.genderSelected) {
@@ -173,17 +238,23 @@ export class CreateCharacterComponent implements OnChanges {
       if(this.postureSelected == 'standing') {
         this.legsSvg = await this.svgService.loadSvg('leg/standing.svg');
         this.legsSvg = await this.svgOptimizer.optimize(this.legsSvg);
-        this.combineAndDisplaySvgs();
+        if(this.selectedCharacter && this.selectedCharacter !== ''  && this.genderSelected == 'female' ){
+          this.combineAndDisplaySvgs();
+        }
       }
-      else if(this.postureSelected == 'walking') {
+      else if(this.postureSelected == 'walking') { 
         this.legsSvg = await this.svgService.loadSvg('leg/walking.svg');
         this.legsSvg = await this.svgOptimizer.optimize(this.legsSvg);
-        this.combineAndDisplaySvgs();
+        if(this.selectedCharacter && this.selectedCharacter !== '' && this.genderSelected == 'female' ){
+          this.combineAndDisplaySvgs();
+        }
       }
       else if (this.postureSelected == 'siting') {
         this.legsSvg = await this.svgService.loadSvg('leg/siting.svg');
         this.legsSvg = await this.svgOptimizer.optimize(this.legsSvg);
-        this.combineAndDisplaySvgs();
+        if(this.selectedCharacter && this.selectedCharacter !== ''  && this.genderSelected == 'female' ){
+          this.combineAndDisplaySvgs();
+        }
       }
     }
   }
@@ -286,6 +357,7 @@ export class CreateCharacterComponent implements OnChanges {
       <g id="legs" transform="translate(${350 + this.sitingX}, ${475 + this.sitingY})">${this.legsSvg}</g>
       <g id="left-hand" transform="translate(${604 + this.sitingX}, ${259 + this.sitingY})">${this.leftHandSvg}</g>
       <g id="right-hand" transform="translate(${375 + this.sitingX}, ${328 + this.sitingY})">${this.rightHandSvg}</g>
+      ${this.customLogo ? `<g id="background" transform="translate(${585 + this.sitingX}, ${385 + this.sitingY})">${this.customLogo}</g>` : ''}
     </svg>
   `;
 
@@ -310,6 +382,9 @@ export class CreateCharacterComponent implements OnChanges {
       }
       if (this.selectedPantColor) {
         this.changeColor(svgElement as SVGElement, '.pant', this.selectedPantColor);
+      }
+      if (this.selectedHairColor) {
+        this.changeColor(svgElement as SVGElement, '.hair', this.selectedHairColor);
       }
     });
   }
@@ -383,6 +458,9 @@ export class CreateCharacterComponent implements OnChanges {
         break;
       case "pant":
         this.selectedPantColor = color;
+        break;
+      case "hair":
+        this.selectedHairColor = color;
         break;
     }
 

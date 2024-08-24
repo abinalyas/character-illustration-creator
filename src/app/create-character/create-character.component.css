@@ -281,4 +281,86 @@
     zoom: 0.3;
   }
 }
+/* 
+upload svg */
+.upload-container {
+  text-align: center;
+  margin: 20px auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.upload-label {
+  display: flex;
+  /* border-radius: 25px; */
+  background-color: #ff3e3e;
+  color: white;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out, transform 0.3s ease;
+  height: 44px;
+  border-radius: 22px;
+  justify-content: center;
+  align-items: center;
+  width: fit-content;
+  padding: 0px 22px;
+}
+
+.upload-label input {
+  display: none;
+}
+
+.upload-label:hover {
+  background-color: #ff3e3e;
+  transform: translateY(-3px);
+}
+
+.preview-container {
+  width: 100%;
+  max-width: 500px; /* Restrict maximum width */
+  height: auto;
+  overflow: hidden; /* Prevent scrolling */
+  border: 2px solid #ddd;
+  padding: 20px 0px;
+  border-radius: 10px;
+  background-color: #f9f9f9;
+  animation: fadeIn 0.5s ease-in-out;
+  margin-top: 40px;
+}
+
+.preview-heading {
+  font-size: 14px;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+
+.svg-preview {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.svg-preview svg {
+  width: 100%; /* Scale the SVG to fit container */
+  height: auto;
+  max-height: 300px; /* Limit the height */
+  object-fit: contain; /* Ensure proper scaling */
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 

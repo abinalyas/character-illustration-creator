@@ -113,10 +113,16 @@
       </div>
 
       <div *ngIf="selectedTab === 'logo'" class="content">
-        <!-- {{selectedLeftHand}} -->
-        <img style="height: 80px; padding-top: 100px; padding-left: 10px;" [src]="avaFacePaths[0]"/>  
-        <div style="padding-left: 0px;">
-          Feature coming soon!!! Thanks for checking out 😍
+        <div class="upload-container">
+          <label class="upload-label" for="svg-upload">
+            <span>Upload SVG</span>
+            <input type="file" id="svg-upload" accept=".svg" (change)="onSvgUpload($event)">
+          </label>
+          
+          <div class="preview-container" *ngIf="svgPreview">
+            <div class="preview-heading">SVG Preview</div>
+            <div class="svg-preview" [innerHTML]="svgPreview"></div>
+          </div>
         </div>
       </div>
 

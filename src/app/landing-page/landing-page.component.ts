@@ -52,7 +52,7 @@ export class LandingPageComponent {
   selectedFaceIndex: number | null = null;
 
   skinColors: string[] = ['#E98C7B', '#F4BCA4', '#FFB784', '#F3A396', '#B2674B'];
-  topColors: string[] = ['#78A9FF','#EF5DA8','#F3BB9D'];
+  topColors: string[] = ['#78A9FF','#EF5DA8','#F3BB9D','#EDF5FF','#202020'];
   pantColors: string[] = ['#001D6C','#EF5DA8'];
   hairColors: string[] = ['#3E1A00','#000000','#E94B36'];
   shoeColors: string[] = ['#3E1A00','#000000','#E94B36'];
