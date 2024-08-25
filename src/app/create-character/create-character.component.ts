@@ -160,7 +160,7 @@ export class CreateCharacterComponent implements OnChanges {
         const svgElement = tempDiv.querySelector('svg') as SVGElement;
   
         if (svgElement) {
-          // Get the current width and height attributes
+          // Resize Logic
           const widthAttr = svgElement.getAttribute('width');
           const heightAttr = svgElement.getAttribute('height');
   
@@ -168,33 +168,46 @@ export class CreateCharacterComponent implements OnChanges {
             const originalWidth = parseFloat(widthAttr);
             const originalHeight = parseFloat(heightAttr);
   
-            // Calculate aspect ratio
             const aspectRatio = originalWidth / originalHeight;
   
-            // Set max dimensions (100x100px)
-            let newWidth = 70;
-            let newHeight = 70;
+            let newWidth = 70;  // Max width 100px
+            let newHeight = 70; // Max height 100px
   
-            // Adjust width and height while maintaining aspect ratio
+            // Maintain aspect ratio
             if (aspectRatio > 1) {
-              newHeight = newWidth / aspectRatio; // Landscape orientation
+              newHeight = newWidth / aspectRatio;
             } else {
-              newWidth = newHeight * aspectRatio; // Portrait orientation
+              newWidth = newHeight * aspectRatio;
             }
   
-            // Apply new width and height to the SVG element
             svgElement.setAttribute('width', newWidth.toString());
             svgElement.setAttribute('height', newHeight.toString());
   
-            // Optional: ensure `viewBox` is set to scale properly
             const viewBox = svgElement.getAttribute('viewBox') || `0 0 ${originalWidth} ${originalHeight}`;
             svgElement.setAttribute('viewBox', viewBox);
           }
   
-          // Update the preview with resized SVG content
+          // Monochrome Logic: Ensure all elements have fill and stroke attributes
+          const allElements = svgElement.querySelectorAll('*');
+          allElements.forEach((element: Element) => {
+            const svgElem = element as SVGElement;
+  
+            // Set fill to white if not already set
+            if (!svgElem.hasAttribute('fill')) {
+              svgElem.setAttribute('fill', '#ffffff'); // White
+            }
+  
+            // Set stroke to white if not already set
+            if (!svgElem.hasAttribute('stroke')) {
+              svgElem.setAttribute('stroke', '#ffffff'); // White
+            }
+          });
+  
+          // Update the preview with resized and monochrome SVG content
           this.svgPreview = this.sanitizer.bypassSecurityTrustHtml(svgElement.outerHTML);
           this.customLogo = svgElement.outerHTML;
-          this.combineAndDisplaySvgs();
+          console.log('Updated SVG:', this.customLogo);
+          this.combineAndDisplaySvgs(); // Call to combine with other SVGs
         }
       };
       reader.readAsText(file);
@@ -203,7 +216,7 @@ export class CreateCharacterComponent implements OnChanges {
     }
   }
   
-
+  
   async ngOnChanges(changes: SimpleChanges) {
 
     if (changes['genderSelected'] && this.genderSelected) {
@@ -355,9 +368,9 @@ export class CreateCharacterComponent implements OnChanges {
       <g id="face" transform="translate(${502 + this.sitingX}, ${150 + this.sitingY})">${this.faceSvg}</g>
       <g id="body" transform="translate(${550 + this.sitingX}, ${325 + this.sitingY})">${this.bodySvg}</g>
       <g id="legs" transform="translate(${350 + this.sitingX}, ${475 + this.sitingY})">${this.legsSvg}</g>
+      ${this.customLogo ? `<g id="background" transform="translate(${585 + this.sitingX}, ${385 + this.sitingY})">${this.customLogo}</g>` : ''}
       <g id="left-hand" transform="translate(${604 + this.sitingX}, ${259 + this.sitingY})">${this.leftHandSvg}</g>
       <g id="right-hand" transform="translate(${375 + this.sitingX}, ${328 + this.sitingY})">${this.rightHandSvg}</g>
-      ${this.customLogo ? `<g id="background" transform="translate(${585 + this.sitingX}, ${385 + this.sitingY})">${this.customLogo}</g>` : ''}
     </svg>
   `;
 

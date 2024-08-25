@@ -323,10 +323,10 @@ upload svg */
   max-width: 500px; /* Restrict maximum width */
   height: auto;
   overflow: hidden; /* Prevent scrolling */
-  border: 2px solid #ddd;
+  border: 2px solid #ff3e3e;
   padding: 20px 0px;
   border-radius: 10px;
-  background-color: #f9f9f9;
+  background-color: #ffe6e6;
   animation: fadeIn 0.5s ease-in-out;
   margin-top: 40px;
 }
