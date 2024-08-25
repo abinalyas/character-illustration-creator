@@ -51,7 +51,8 @@ export class CreateCharacterComponent implements OnChanges {
     { image: 'backgrounds/3.svg', svg: 'backgrounds/3.svg' },
     { image: 'backgrounds/5.svg', svg: 'backgrounds/5.svg' },
     { image: 'backgrounds/6.svg', svg: 'backgrounds/6.svg' },
-    { image: 'backgrounds/9.svg', svg: 'backgrounds/9.svg' }
+    { image: 'backgrounds/9.svg', svg: 'backgrounds/9.svg' },
+    { image: 'backgrounds/10.svg', svg: 'backgrounds/10.svg' }
   ];
 
   selectedFace: string | null = null;
