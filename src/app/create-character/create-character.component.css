@@ -281,22 +281,14 @@
     zoom: 0.3;
   }
 }
-/* 
-upload svg */
-.upload-container {
-  text-align: center;
-  margin: 20px auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
 
+
+/* Existing Styles */
 .upload-label {
   display: flex;
-  /* border-radius: 25px; */
-  background-color: #ff3e3e;
-  color: white;
+  /* background-color: #ff3e3e; */
+  border: solid 2px #ff3e3e;
+  color: #ff3e3e;
   font-size: 13px;
   font-weight: 500;
   cursor: pointer;
@@ -315,20 +307,25 @@ upload svg */
 
 .upload-label:hover {
   background-color: #ff3e3e;
+  color: #ffffff;
   transform: translateY(-3px);
 }
 
 .preview-container {
   width: 100%;
-  max-width: 500px; /* Restrict maximum width */
+  max-width: 500px;
   height: auto;
-  overflow: hidden; /* Prevent scrolling */
+  overflow: hidden;
   border: 2px solid #ff3e3e;
   padding: 20px 0px;
   border-radius: 10px;
   background-color: #ffe6e6;
   animation: fadeIn 0.5s ease-in-out;
   margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .preview-heading {
@@ -346,21 +343,53 @@ upload svg */
 }
 
 .svg-preview svg {
-  width: 100%; /* Scale the SVG to fit container */
+  width: 100%;
   height: auto;
-  max-height: 300px; /* Limit the height */
-  object-fit: contain; /* Ensure proper scaling */
+  max-height: 300px;
+  object-fit: contain;
 }
 
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  100% {
-    opacity: 1;
-    transform: translateY(0);
-  }
+/* New Styles */
+.color-picker-container, .opacity-slider-container {
+  margin-top: 20px;
 }
 
+.color-picker-label, .opacity-slider-label {
+  display: block;
+  font-size: 14px;
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+
+.color-picker-input {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.opacity-slider-input {
+  width: 100%;
+  border-radius: 5px;
+  background-color: #f5f5f5;
+}
+
+.apply-button {
+  display: inline-block;
+  background-color: #ff3e3e;
+  color: white;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out, transform 0.3s ease;
+  height: 44px;
+  border-radius: 22px;
+  padding: 0px 22px;
+  margin-top: 20px;
+  border: none;
+}
+
+.apply-button:hover {
+  background-color: #e63c3c;
+  transform: translateY(-3px);
+}
 
