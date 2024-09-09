@@ -14,6 +14,7 @@ export class LandingPageComponent {
   selectedLeftMenuItem: string = '';
   selectedRightMenuItem: string = '';
   onColorChangeAssets: any[] = [];
+  isCopied = false;
 
   selectedSkinColor: string | null = null;
   selectedTopColor: string | null = null;
@@ -33,8 +34,12 @@ export class LandingPageComponent {
 
   hoveredColor: string | null = null; // Add this line
 
-  faceSvgPaths = ['Face-1.svg', 'Face-2.svg', 'Face-3.svg'];
-  faceSvgs: SafeHtml[] = [];
+  femaleFaceSvgPaths = ['Face-1.svg', 'Face-2.svg', 'Face-3.svg', 'face/male/Bob/Bob-1.svg'];
+  maleFaceSvgPaths = ['face/male/Tim/Tim-1.svg', 'face/male/Adam/Adam-1.svg', 'face/male/Jimmy/Jimmy-1.svg', 'face/male/Rohan/Rohan-1.svg', 'face/male/Bob/Bob-1.svg'];
+
+  maleFaceSvgs: SafeHtml[] = [];
+  femaleFaceSvgs: SafeHtml[] = [];
+
   femaleFacePngs = ['face/female/face-1.png','face/female/face-2.png','face/female/face-3.png']
   feamleFaceSelectedPngs = ['face/female/face-1-selected.png','face/female/face-2-selected.png','face/female/face-3-selected.png']
   faemaleFaceDeselectedPngs = ['face/female/face-1-deselected.png','face/female/face-2-deselected.png','face/female/face-3-deselected.png']
@@ -55,7 +60,7 @@ export class LandingPageComponent {
   topColors: string[] = ['#78A9FF','#EF5DA8','#F3BB9D','#EDF5FF','#202020', '#A7F0BA'];
   pantColors: string[] = ['#001D6C','#022D0D','#001141'];
   hairColors: string[] = ['#3E1A00','#000000','#E94B36'];
-  shoeColors: string[] = ['#A6C8FF','#6FDC8C','#D9D1C7'];
+  shoeColors: string[] = ['#A6C8FF','#6FDC8C','#D9D1C7', '#001141'];
 
 
 
@@ -79,7 +84,9 @@ export class LandingPageComponent {
   ) {}
 
   async ngOnInit() {
-    await this.loadSvgSets(this.faceSvgPaths, this.faceSvgs);
+    await this.loadSvgSets(this.femaleFaceSvgPaths, this.femaleFaceSvgs);
+    await this.loadSvgSets(this.maleFaceSvgPaths, this.maleFaceSvgs);
+
   }
 
   private async loadSvgSets(paths: string[], svgArray: SafeHtml[]) {
@@ -163,19 +170,25 @@ export class LandingPageComponent {
     // Set the selected face index
     this.selectedFaceIndex = index;
   
-    if(this.isGenderSelected('male') ) {
-      // Update the facePngs array based on the selected face
-      // this.maleFacePngs = this.maleFacePngs.map((_, i) =>
-      //   i === index ? this.maleFaceSelectedPngs[i] : this.maleFaceDeselectedPngs[i]
-      // );
-    }
+    // if(this.isGenderSelected('male') ) {
+    //   const selectedCharacter = 'bob';
+    //     const svgPath = this.femaleFaceSvgPaths[3];
+    //     const svgContent = await this.fetchSvgContent(svgPath);
+    //     this.selectedFace1 = [svgContent,selectedCharacter];
+    //     this.selectedFace = svgContent; // If using string, otherwise use SafeHtml as discussed earlier.
+       
+    //     const emitCopy = [...this.selectedFace1];
+    //     console.log('Emitting:', emitCopy);
+    //     this.faceSelected.emit(emitCopy);
+    //     console.log('Emitted:', emitCopy);
+    // }
   
     // Fetch the corresponding SVG content for the selected face
 
     if(index == 0) {
       if(this.isGenderSelected('female')) {
         const selectedCharacter = 'ava';
-        const svgPath = this.faceSvgPaths[index];
+        const svgPath = this.femaleFaceSvgPaths[index];
         const svgContent = await this.fetchSvgContent(svgPath);
         this.selectedFace1 = [svgContent,selectedCharacter];
         this.selectedFace = svgContent; // If using string, otherwise use SafeHtml as discussed earlier.
@@ -187,7 +200,8 @@ export class LandingPageComponent {
       }
       else {
         const selectedCharacter = 'tim';
-        const svgContent = '';
+        const svgPath = this.maleFaceSvgPaths[index];
+        const svgContent = await this.fetchSvgContent(svgPath);
         this.selectedFace1 = [svgContent,selectedCharacter];
         const emitCopy = [...this.selectedFace1];
         console.log('Emitting:', emitCopy);
@@ -199,7 +213,7 @@ export class LandingPageComponent {
     else if(index == 1) {
       if(this.isGenderSelected('female')) {
         const selectedCharacter = 'sara';
-        const svgPath = this.faceSvgPaths[index];
+        const svgPath = this.femaleFaceSvgPaths[index];
         const svgContent = await this.fetchSvgContent(svgPath);
         this.selectedFace1 = [svgContent,selectedCharacter];
         this.selectedFace = svgContent; 
@@ -211,7 +225,8 @@ export class LandingPageComponent {
       }
       else {
         const selectedCharacter = 'adam';
-        const svgContent = '';
+        const svgPath = this.maleFaceSvgPaths[index];
+        const svgContent = await this.fetchSvgContent(svgPath);
         this.selectedFace1 = [svgContent,selectedCharacter];
         const emitCopy = [...this.selectedFace1];
         console.log('Emitting:', emitCopy);
@@ -222,7 +237,7 @@ export class LandingPageComponent {
     else if(index ==2) {
       if(this.isGenderSelected('female')) {
         const selectedCharacter = 'jenna';
-        const svgPath = this.faceSvgPaths[index];
+        const svgPath = this.femaleFaceSvgPaths[index];
         const svgContent = await this.fetchSvgContent(svgPath);
         this.selectedFace1 = [svgContent,selectedCharacter];
         this.selectedFace = svgContent; 
@@ -234,7 +249,8 @@ export class LandingPageComponent {
       }
       else {
         const selectedCharacter = 'jimmy';
-        const svgContent = '';
+        const svgPath = this.maleFaceSvgPaths[index];
+        const svgContent = await this.fetchSvgContent(svgPath);
         this.selectedFace1 = [svgContent,selectedCharacter];
         const emitCopy = [...this.selectedFace1];
         console.log('Emitting:', emitCopy);
@@ -244,7 +260,8 @@ export class LandingPageComponent {
     }
     else if(index ==3) {
       const selectedCharacter = 'rohan';
-      const svgContent = '';
+      const svgPath = this.maleFaceSvgPaths[index];
+        const svgContent = await this.fetchSvgContent(svgPath);
       this.selectedFace1 = [svgContent,selectedCharacter];
       const emitCopy = [...this.selectedFace1];
       console.log('Emitting:', emitCopy);
@@ -253,7 +270,8 @@ export class LandingPageComponent {
     }
     else {
       const selectedCharacter = 'bob';
-      const svgContent = '';
+      const svgPath = this.maleFaceSvgPaths[index];
+      const svgContent = await this.fetchSvgContent(svgPath);
       this.selectedFace1 = [svgContent,selectedCharacter];
       const emitCopy = [...this.selectedFace1];
       console.log('Emitting:', emitCopy);
@@ -283,7 +301,11 @@ export class LandingPageComponent {
 
   genderSelection(gender: string): void {
     this.selectedGender = gender;
-    this.selectedFaceIndex = null
+    this.selectedFaceIndex = null;
+    this.standingSelected = true;
+    this.walkingSelected = false;
+    this.sitingSelected = false;
+    this.selectedPosture = 'standing';
     this.genderSelected.emit(this.selectedGender);
   }
 
@@ -353,6 +375,32 @@ export class LandingPageComponent {
     };
     image.onerror = (err) => console.error('Failed to load image', err);
     image.src = svgDataUrl;
+  }
+
+  copySVGToClipboard() {
+    const svgElement = document.getElementById('svg-container')?.innerHTML;
+    if (!svgElement) return;
+  
+    // Use navigator.clipboard to copy the SVG content to the clipboard
+    const sanitizedSvg = svgElement.replace(/(\r\n|\n|\r)/gm, "").trim();
+    
+    // Ensure the browser supports clipboard API
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(sanitizedSvg).then(() => {
+        console.log('SVG copied to clipboard');
+        this.showCopyNotification();
+      }).catch((err) => {
+        console.error('Failed to copy SVG: ', err);
+      });
+    } else {
+      console.error('Clipboard API not supported');
+    }
+  }
+  showCopyNotification() {
+    this.isCopied = true;
+    setTimeout(() => {
+      this.isCopied = false;
+    }, 2000); // Hide after 2 seconds
   }
 
   private downloadFile(url: string, filename: string) {

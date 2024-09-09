@@ -12,12 +12,12 @@
     <div *ngIf="isVisible && !showPopup" class="cursor-text" [class.hidden]="!isVisible" [style.left.px]="x + 50" [style.top.px]="y + 20">
         change background
     </div>
-    <div *ngIf="selectedCharacter !== 'ava' && selectedCharacter !== 'jenna' && selectedCharacter !== 'sara' && genderSelected == 'male'">
+    <!-- <div *ngIf="selectedCharacter !== 'ava' && selectedCharacter !== 'jenna' && selectedCharacter !== 'sara' && genderSelected == 'male'">
       <img style="height: 160px;" [src]="maleFacePath()"/>  
           <div style="padding-left: 0px; font-weight: 500;">
             Abin's not interested in us right now—he's too busy with Ava! 😅 <br>
             But hopefully, he’ll come back to us soon! 🤞</div>
-    </div>
+    </div> -->
     <div *ngIf="selectedCharacter !== 'ava' && selectedCharacter !== 'jenna' && selectedCharacter !== 'sara' && genderSelected == 'female'">
       <div style="padding-left: 0px; font-weight: 500;">
         Choose one of us from top <span style="font-size: 30px;">☝️</span>
@@ -51,31 +51,31 @@
     <div class="tabs-container">
       <div class="tab" [class.selected]="selectedTab === 'face'" (click)="selectTab('face')">
         <!-- <img src="" alt="Face" class="tab-icon"> -->
-        <span style="font-size: 14px; font-weight: 500;">Face Expression</span>
+        <span style="font-size: 14px; font-weight: 500;">Facial Expression</span>
       </div>
       <div class="tab" [class.selected]="selectedTab === 'handsTogether'" (click)="selectTab('handsTogether')">
         <!-- <img src="" alt="Right Hand" class="tab-icon"> -->
-        <span style="font-size: 14px; font-weight: 500;">Hands together Posture</span>
+        <span style="font-size: 14px; font-weight: 500;">Hands Together Posture</span>
       </div>
       <div class="tab" [class.selected]="selectedTab === 'rightHand'" (click)="selectTab('rightHand')">
         <!-- <img src="" alt="Right Hand" class="tab-icon"> -->
-        <span style="font-size: 14px; font-weight: 500;">Right Hand Posture</span>
+        <span style="font-size: 14px; font-weight: 500;">Right Arm Posture</span>
       </div>
       <div class="tab" [class.selected]="selectedTab === 'leftHand'" (click)="selectTab('leftHand')">
         <!-- <img src="" alt="Left Hand" class="tab-icon"> -->
-        <span style="font-size: 14px; font-weight: 500;">Left Hand Posture</span>
+        <span style="font-size: 14px; font-weight: 500;">Left Arm Posture</span>
       </div>
       <div class="tab" [class.selected]="selectedTab === 'leg'" (click)="selectTab('leg')">
         <!-- <img src="" alt="Left Hand" class="tab-icon"> -->
-        <span style="font-size: 14px; font-weight: 500;">Leg Posture</span>
+        <span style="font-size: 14px; font-weight: 500;">Legs Posture</span>
       </div>
       <div class="tab" [class.selected]="selectedTab === 'logo'" (click)="selectTab('logo')">
         <!-- <img src="" alt="Left Hand" class="tab-icon"> -->
-        <span style="font-size: 14px; font-weight: 500;">Add logo</span>
+        <span style="font-size: 14px; font-weight: 500;">Add a logo</span>
       </div>
       <div class="tab" [class.selected]="selectedTab === 'background'" (click)="selectTab('background')">
         <!-- <img src="" alt="Left Hand" class="tab-icon"> -->
-        <span style="font-size: 14px; font-weight: 500;">Custom background</span>
+        <span style="font-size: 14px; font-weight: 500;">Customize Background</span>
       </div>
     </div>
     
@@ -91,19 +91,40 @@
         <div *ngIf="selectedCharacter === 'sara'" class="svg-wrapper">
           <div [style]="selectedFace == saraFace ? 'border: 10px solid red; box-shadow: 0 0 0 0px #ff3e3e, 0 16px 19px rgba(166, 99, 99, .28);' : ''" *ngFor="let saraFace of saraFaceSvgs" [innerHTML]="saraFace" class="svg-item" (click)="onFaceClick(saraFace)"></div>
         </div>
+        <div *ngIf="selectedCharacter === 'adam'" class="svg-wrapper">
+          <div [style]="selectedFace == adamFace ? 'border: 10px solid red; box-shadow: 0 0 0 0px #ff3e3e, 0 16px 19px rgba(166, 99, 99, .28);' : ''" *ngFor="let adamFace of adamFaceSvgs" [innerHTML]="adamFace" class="svg-item" (click)="onFaceClick(adamFace)"></div>
+        </div>
+        <div *ngIf="selectedCharacter === 'bob'" class="svg-wrapper">
+          <div [style]="selectedFace == bobFace ? 'border: 10px solid red; box-shadow: 0 0 0 0px #ff3e3e, 0 16px 19px rgba(166, 99, 99, .28);' : ''" *ngFor="let bobFace of bobFaceSvgs" [innerHTML]="bobFace" class="svg-item" (click)="onFaceClick(bobFace)"></div>
+        </div>
+        <div *ngIf="selectedCharacter === 'tim'" class="svg-wrapper">
+          <div [style]="selectedFace == timFace ? 'border: 10px solid red; box-shadow: 0 0 0 0px #ff3e3e, 0 16px 19px rgba(166, 99, 99, .28);' : ''" *ngFor="let timFace of timFaceSvgs" [innerHTML]="timFace" class="svg-item" (click)="onFaceClick(timFace)"></div>
+        </div>
+        <div *ngIf="selectedCharacter === 'jimmy'" class="svg-wrapper">
+          <div [style]="selectedFace == jimmyFace ? 'border: 10px solid red; box-shadow: 0 0 0 0px #ff3e3e, 0 16px 19px rgba(166, 99, 99, .28);' : ''" *ngFor="let jimmyFace of jimmyFaceSvgs" [innerHTML]="jimmyFace" class="svg-item" (click)="onFaceClick(jimmyFace)"></div>
+        </div>
+        <div *ngIf="selectedCharacter === 'rohan'" class="svg-wrapper">
+          <div [style]="selectedFace == rohhanFace ? 'border: 10px solid red; box-shadow: 0 0 0 0px #ff3e3e, 0 16px 19px rgba(166, 99, 99, .28);' : ''" *ngFor="let rohhanFace of rohanFaceSvgs" [innerHTML]="rohhanFace" class="svg-item" (click)="onFaceClick(rohhanFace)"></div>
+        </div>
       </div>
   
       <div *ngIf="selectedTab === 'rightHand'" class="content">
         <!-- {{selectedRightHand}} -->
-        <div class="svg-wrapper">
-          <img [style]="selectedRightHand == rightHandSvgs[i] ? 'border: 10px solid red; box-shadow: 0 0 0 0px #ff3e3e, 0 16px 19px rgba(166, 99, 99, .28);' : ''" *ngFor="let rightHandPng of rightHandPngPaths; let i = index" [src]="rightHandPng" class="svg-item" (click)="onHandClick(rightHandSvgs[i], 'right')"/>
+        <div *ngIf="genderSelected === 'female'" class="svg-wrapper">
+          <img [style]="selectedRightHand == femaleRightHandSvgs[i] ? 'border: 10px solid red; box-shadow: 0 0 0 0px #ff3e3e, 0 16px 19px rgba(166, 99, 99, .28);' : ''" *ngFor="let rightHandPng of rightHandPngPaths; let i = index" [src]="rightHandPng" class="svg-item" (click)="onHandClick(femaleRightHandSvgs[i], 'right')"/>
+        </div>
+        <div *ngIf="genderSelected === 'male'" class="svg-wrapper">
+          <img [style]="selectedRightHand == maleRightHandSvgs[i] ? 'border: 10px solid red; box-shadow: 0 0 0 0px #ff3e3e, 0 16px 19px rgba(166, 99, 99, .28);' : ''" *ngFor="let rightHandPng of maleRightHandPngPaths; let i = index" [src]="rightHandPng" class="svg-item" (click)="onHandClick(maleRightHandSvgs[i], 'right')"/>
         </div>
       </div>
   
       <div *ngIf="selectedTab === 'leftHand'" class="content">
         <!-- {{selectedLeftHand}} -->
-        <div class="svg-wrapper">
-          <img [style]="selectedLeftHand == leftHandSvgs[i] ? 'border: 10px solid red; box-shadow: 0 0 0 0px #ff3e3e, 0 16px 19px rgba(166, 99, 99, .28);' : ''" *ngFor="let leftHandPng of leftHandPngPaths; let i = index" [src]="leftHandPng" class="svg-item" (click)="onHandClick(leftHandSvgs[i], 'left')"/>
+        <div *ngIf="genderSelected === 'female'" class="svg-wrapper">
+          <img [style]="selectedLeftHand == femaleLeftHandSvgs[i] ? 'border: 10px solid red; box-shadow: 0 0 0 0px #ff3e3e, 0 16px 19px rgba(166, 99, 99, .28);' : ''" *ngFor="let leftHandPng of leftHandPngPaths; let i = index" [src]="leftHandPng" class="svg-item" (click)="onHandClick(femaleLeftHandSvgs[i], 'left')"/>
+        </div>
+        <div *ngIf="genderSelected === 'male'" class="svg-wrapper">
+          <img [style]="selectedLeftHand == femaleLeftHandSvgs[i] ? 'border: 10px solid red; box-shadow: 0 0 0 0px #ff3e3e, 0 16px 19px rgba(166, 99, 99, .28);' : ''" *ngFor="let leftHandPng of maleLeftHandPngPaths; let i = index" [src]="leftHandPng" class="svg-item" (click)="onHandClick(maleLeftHandSvgs[i], 'left')"/>
         </div>
       </div>
 
@@ -123,15 +144,6 @@
 
       <div *ngIf="selectedTab === 'logo'" class="content">
         <div class="upload-container">
-          <!-- <label class="upload-label" for="svg-upload">
-            <span>Upload SVG</span>
-            <input type="file" id="svg-upload" accept=".svg" (change)="onSvgUpload($event)">
-          </label>
-          
-          <div class="preview-container" *ngIf="svgPreview">
-            <div class="preview-heading">SVG Preview</div>
-            <div class="svg-preview" [innerHTML]="svgPreview"></div>
-          </div> -->
           <div class="container">
             <!-- SVG Upload Button -->
             <label class="upload-label" for="svg-upload">
@@ -178,32 +190,6 @@
       </div>
     </div>
   </div>
-  
-    <!-- <div id="svg-selection-container">
-      <div id="hand-container">
-        <div style="padding: 20px;display: flex; align-items: center; flex-direction: column;">
-          <div>Choose face expression</div>
-          <div *ngIf='selectedCharacter =="ava"' style="display: flex; flex-direction: column;">
-            <div style="height: 150px" *ngFor="let avaFace of avaFaceSvgs" [innerHTML]="avaFace" class="svg-wrapper" (click)="onFaceClick(avaFace)" ></div>
-          </div>
-          <div *ngIf='selectedCharacter =="jenna"' style="display: flex; flex-direction: column;">
-            <div style="height: 150px" *ngFor="let jennaFace of jennaFaceSvgs" [innerHTML]="jennaFace" class="svg-wrapper" (click)="onFaceClick(jennaFace)" ></div>
-          </div>
-        </div>
-        <div style="padding: 20px;display: flex; align-items: center; flex-direction: column;">
-          <div>Choose the right hand posture</div>
-          <div style="display: flex; flex-direction: column;">
-            <div style="height: 150px" *ngFor="let handSvg of rightHandSvgs" [innerHTML]="handSvg" class="svg-wrapper" (click)="onHandClick(handSvg,'right')"></div>
-          </div>
-        </div>
-        <div style="padding: 20px;display: flex; align-items: center; flex-direction: column;">
-          <div>Choose the left hand posture</div>
-          <div style="display: flex; flex-direction: column;">
-            <div style="height: 150px" *ngFor="let handSvg of leftHandSvgs" [innerHTML]="handSvg" class="svg-wrapper" (click)="onHandClick(handSvg, 'left')"></div>
-          </div>
-        </div>
-      </div>   
-    </div> -->
 </div>
 
 </div>

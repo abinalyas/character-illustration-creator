@@ -1,4 +1,8 @@
+
 <div class="main-container">
+  <div class="copy-notification" *ngIf="isCopied">
+    File copied to clipboard!
+  </div>
     <!-- Left Navigation Menu -->
     <div class="left-menu">
       <div class="logo">
@@ -217,8 +221,9 @@
                 </svg>
             </button>
             <div class="dropdown-content">
-                <a (click)="downloadSVG()">SVG</a>
-                <a (click)="downloadPNG()">PNG</a>
+                <a class="dropdown-items" (click)="downloadSVG()">SVG</a>
+                <a class="dropdown-items" (click)="downloadPNG()">PNG</a>
+                <a class="dropdown-items" (click)="copySVGToClipboard()">Copy SVG</a>
             </div>
         </div>
     
@@ -407,7 +412,6 @@
                 </svg>
             </div> -->
         </div>
-    </div>
-    
+    </div>    
   </div>
   

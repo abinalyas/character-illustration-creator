@@ -52,7 +52,8 @@ export class CreateCharacterComponent implements OnChanges {
     { image: 'backgrounds/5.svg', svg: 'backgrounds/5.svg' },
     { image: 'backgrounds/6.svg', svg: 'backgrounds/6.svg' },
     { image: 'backgrounds/9.svg', svg: 'backgrounds/9.svg' },
-    { image: 'backgrounds/10.svg', svg: 'backgrounds/10.svg' }
+    { image: 'backgrounds/10.svg', svg: 'backgrounds/10.svg' },
+    { image: 'backgrounds/11.svg', svg: 'backgrounds/11.svg' }
   ];
 
   selectedFace: string | null = null;
@@ -65,22 +66,41 @@ export class CreateCharacterComponent implements OnChanges {
 
 
   faceSvgs: SafeHtml[] = [];
-  rightHandSvgs: SafeHtml[] = [];
-  leftHandSvgs: SafeHtml[] = [];
+  femaleRightHandSvgs: SafeHtml[] = [];
+  femaleLeftHandSvgs: SafeHtml[] = [];
+  maleLeftHandSvgs: SafeHtml[] = [];
+  maleRightHandSvgs: SafeHtml[] = [];
   handsTogetherSvgs: SafeHtml[] = [];
   backgroundSvgs: SafeHtml[] = [];
   customLogo: any;
   avaFaceSvgs: SafeHtml[] = [];
   jennaFaceSvgs: SafeHtml[] = [];
   saraFaceSvgs: SafeHtml[] = [];
+  adamFaceSvgs: SafeHtml[] = [];
+  bobFaceSvgs: SafeHtml[] = [];
+  timFaceSvgs: SafeHtml[] = [];
+  jimmyFaceSvgs: SafeHtml[] = [];
+  rohanFaceSvgs: SafeHtml[] = [];
 
 
   faceSvg: string = 'body.svg';
-  bodySvg: string = 'body.svg';
-  leftHandSvg: string = 'left-hand.svg';
-  rightHandSvg: string | null = null;
+  // bodySvg: string = 'body.svg';
+  femaleBodySvg: string = 'body.svg';
+  maleBodySvg: string = 'top.svg';
+
+  femaleLeftHandSvg: string = 'left-hand.svg';
+  maleLeftHandSvg: string = 'male-left-hand.svg';
+  femaleRightHandSvg: string | null = null;
+  maleRightHandSvg: string | null = null;
   handTogeteherSvg: string | null = null;
-  legsSvg: string = 'legs.svg';
+  legsSvg: string = 'leg/standing.svg';
+  maleLegsSvg:  string = 'leg/male/male-standing.svg';
+  maleNeckSvg:  string = 'neck.svg';
+  maleTopRightHand:  string = 'top-right-hand.svg';
+  maleTopLefttHand:  string = 'top-left-hand.svg';
+
+
+
   backgroundSvg: string = 'backgrounds/9.svg'
   svgContainerData: boolean =false;
 
@@ -89,16 +109,28 @@ export class CreateCharacterComponent implements OnChanges {
   selectedOpacity: number = 1; // Default opacity (1 = fully opaque)
 
   faceSvgPaths = ['Face-1.svg', 'Face-2.svg', 'Face-3.svg'];
-  rightHandSvgPaths = ['hands/Right-hand/right-hand-1.svg', 'hands/Right-hand/right-hand-2.svg', 'hands/Right-hand/right-hand-3.svg', 'hands/Right-hand/right-hand-4.svg', 'hands/Right-hand/right-hand-5.svg'];
-  leftHandSvgPaths = ['hands/Left-hand/left-hand-1.svg', 'hands/Left-hand/left-hand-2.svg', 'hands/Left-hand/left-hand-3.svg', 'hands/Left-hand/left-hand-4.svg', 'hands/Left-hand/left-hand-5.svg'];
+  femaleRightHandSvgPaths = ['hands/Right-hand/right-hand-1.svg', 'hands/Right-hand/right-hand-2.svg', 'hands/Right-hand/right-hand-3.svg', 'hands/Right-hand/right-hand-4.svg', 'hands/Right-hand/right-hand-5.svg'];
+  femaleLeftHandSvgPaths = ['hands/Left-hand/left-hand-1.svg', 'hands/Left-hand/left-hand-2.svg', 'hands/Left-hand/left-hand-3.svg', 'hands/Left-hand/left-hand-4.svg', 'hands/Left-hand/left-hand-5.svg'];
+  maleLeftHandSvgPaths = ['hands/Left-hand/male/left-hand-1.svg', 'hands/Left-hand/male/left-hand-2.svg', 'hands/Left-hand/male/left-hand-3.svg', 'hands/Left-hand/male/left-hand-4.svg', 'hands/Left-hand/male/left-hand-5.svg'];
+  maleRightHandSvgPaths = ['hands/Right-hand/male/right-hand-1.svg', 'hands/Right-hand/male/right-hand-2.svg', 'hands/Right-hand/male/right-hand-3.svg', 'hands/Right-hand/male/right-hand-4.svg'];
+
   handTogetherSvgPaths = ['hands/Hands-together/hands-together-1.svg', 'hands/Hands-together/hands-together-2.svg', 'hands/Hands-together/hands-together-3.svg'];
   backgroundSvgPaths = ['backgrounds/1.svg','backgrounds/2.svg','backgrounds/3.svg','backgrounds/5.svg','backgrounds/6.svg','backgrounds/8.svg']
   avaFacePaths = ['face/female/Ava/Ava-1.svg','face/female/Ava/Ava-2.svg','face/female/Ava/Ava-3.svg','face/female/Ava/Ava-4.svg','face/female/Ava/Ava-5.svg','face/female/Ava/Ava-6.svg','face/female/Ava/Ava-7.svg'];
   jennaFacePaths = ['face/female/Jenna/Jenna-1.svg','face/female/Jenna/Jenna-2.svg','face/female/Jenna/Jenna-3.svg','face/female/Jenna/Jenna-4.svg','face/female/Jenna/Jenna-5.svg','face/female/Jenna/Jenna-6.svg','face/female/Jenna/Jenna-7.svg','face/female/Jenna/Jenna-8.svg','face/female/Jenna/Jenna-9.svg'];
   saraFacePaths = ['face/female/Sara/Sara-1.svg','face/female/Sara/Sara-2.svg','face/female/Sara/Sara-3.svg','face/female/Sara/Sara-4.svg','face/female/Sara/Sara-5.svg','face/female/Sara/Sara-6.svg','face/female/Sara/Sara-7.svg','face/female/Sara/Sara-8.svg','face/female/Sara/Sara-9.svg'];
+  adamFacePaths = ['face/male/Adam/Adam-1.svg','face/male/Adam/Adam-2.svg','face/male/Adam/Adam-3.svg','face/male/Adam/Adam-4.svg','face/male/Adam/Adam-5.svg','face/male/Adam/Adam-6.svg','face/male/Adam/Adam-7.svg','face/male/Adam/Adam-8.svg','face/male/Adam/Adam-9.svg','face/male/Adam/Adam-10.svg'];
+  bobFacePaths = ['face/male/Bob/Bob-1.svg','face/male/Bob/Bob-2.svg','face/male/Bob/Bob-3.svg','face/male/Bob/Bob-4.svg','face/male/Bob/Bob-5.svg','face/male/Bob/Bob-6.svg','face/male/Bob/Bob-7.svg','face/male/Bob/Bob-8.svg','face/male/Bob/Bob-9.svg','face/male/Bob/Bob-10.svg'];
+  timFacePaths = ['face/male/Tim/Tim-1.svg','face/male/Tim/Tim-2.svg','face/male/Tim/Tim-3.svg','face/male/Tim/Tim-4.svg','face/male/Tim/Tim-5.svg','face/male/Tim/Tim-6.svg','face/male/Tim/Tim-7.svg','face/male/Tim/Tim-8.svg','face/male/Tim/Tim-9.svg','face/male/Tim/Tim-10.svg'];
+  jimmyFacePaths = ['face/male/Jimmy/Jimmy-1.svg','face/male/Jimmy/Jimmy-2.svg','face/male/Jimmy/Jimmy-3.svg','face/male/Jimmy/Jimmy-4.svg','face/male/Jimmy/Jimmy-5.svg','face/male/Jimmy/Jimmy-6.svg','face/male/Jimmy/Jimmy-7.svg','face/male/Jimmy/Jimmy-8.svg','face/male/Jimmy/Jimmy-9.svg','face/male/Jimmy/Jimmy-10.svg'];
+  rohanFacePaths = ['face/male/Rohan/Rohan-1.svg','face/male/Rohan/Rohan-2.svg','face/male/Rohan/Rohan-3.svg','face/male/Rohan/Rohan-4.svg','face/male/Rohan/Rohan-5.svg','face/male/Rohan/Rohan-6.svg','face/male/Rohan/Rohan-7.svg','face/male/Rohan/Rohan-8.svg','face/male/Rohan/Rohan-9.svg','face/male/Rohan/Rohan-10.svg'];
+
 
   rightHandPngPaths = ['hands/Right-hand/png/right-hand-1.png', 'hands/Right-hand/png/right-hand-2.png', 'hands/Right-hand/png/right-hand-3.png', 'hands/Right-hand/png/right-hand-4.png', 'hands/Right-hand/png/right-hand-5.png'];
+  maleRightHandPngPaths = ['hands/Right-hand/male/png/right-hand-1.png', 'hands/Right-hand/male/png/right-hand-2.png', 'hands/Right-hand/male/png/right-hand-3.png'];
   leftHandPngPaths = ['hands/Left-hand/png/left-hand-1.png', 'hands/Left-hand/png/left-hand-2.png', 'hands/Left-hand/png/left-hand-3.png', 'hands/Left-hand/png/left-hand-4.png', 'hands/Left-hand/png/left-hand-5.png'];
+  maleLeftHandPngPaths = ['hands/Left-hand/male/png/left-hand-1.png', 'hands/Left-hand/male/png/left-hand-2.png', 'hands/Left-hand/male/png/left-hand-3.png','hands/Left-hand/male/png/left-hand-4.png'];
+  
   
   maleFacePngs = ['face/male/face-1.png','face/male/face-2.png','face/male/face-3.png','face/male/face-4.png','face/male/face-5.png']
   femaleFacePngs = ['face/female/face-1.png','face/female/face-2.png','face/female/face-3.png']
@@ -137,7 +169,13 @@ export class CreateCharacterComponent implements OnChanges {
       shoeSoleColor: '#D9D1C7',       // Blue pant color
       shoelaceColor: '#2B241D', // Yellow pant bottom color
       shoeTongueColor: '#E7E0DA'     // Red outline color
+    },
+    {
+      shoeSoleColor: '#001141',       // Blue pant color
+      shoelaceColor: '#001141', // Yellow pant bottom color
+      shoeTongueColor: '#FFF5E5'     // Red outline color
     }
+
   ];
 
   maleFaceNames = ['tim','adam','jimmy','rohan','bob'];
@@ -157,18 +195,35 @@ export class CreateCharacterComponent implements OnChanges {
     await this.loadInitialSvgs();
     await this.loadSvgSets(this.backgroundSvgPaths, this.backgroundSvgs);
     await this.loadSvgSets(this.faceSvgPaths, this.faceSvgs);
-    await this.loadSvgSets(this.rightHandSvgPaths, this.rightHandSvgs);
-    await this.loadSvgSets(this.leftHandSvgPaths, this.leftHandSvgs);
+    await this.loadSvgSets(this.femaleRightHandSvgPaths, this.femaleRightHandSvgs);
+    await this.loadSvgSets(this.femaleLeftHandSvgPaths, this.femaleLeftHandSvgs);
+    await this.loadSvgSets(this.maleLeftHandSvgPaths, this.maleLeftHandSvgs);
+    await this.loadSvgSets(this.maleRightHandSvgPaths, this.maleRightHandSvgs);
     await this.loadSvgSets(this.handTogetherSvgPaths, this.handsTogetherSvgs);
     await this.loadSvgSets(this.backgroundSvgPaths, this.backgroundSvgs);
     await this.loadSvgSets(this.avaFacePaths, this.avaFaceSvgs);
     await this.loadSvgSets(this.jennaFacePaths, this.jennaFaceSvgs);
     await this.loadSvgSets(this.saraFacePaths, this.saraFaceSvgs);
+    await this.loadSvgSets(this.adamFacePaths, this.adamFaceSvgs);
+    await this.loadSvgSets(this.bobFacePaths, this.bobFaceSvgs);
+    await this.loadSvgSets(this.timFacePaths, this.timFaceSvgs);
+    await this.loadSvgSets(this.rohanFacePaths, this.rohanFaceSvgs);
+    await this.loadSvgSets(this.jimmyFacePaths, this.jimmyFaceSvgs);
 
 
-    this.selectedRightHand = this.rightHandSvgs[1].toString();
-    this.selectedLeftHand = this.leftHandSvgs[1].toString();
-    // this.selectedHandsTogether = this.handsTogetherSvgs[1].toString();
+    if(this.genderSelected == 'female') {
+      this.selectedRightHand = this.femaleRightHandSvgs[1].toString();
+      this.selectedLeftHand = this.femaleLeftHandSvgs[1].toString();
+      this.femaleRightHandSvg = this.selectedRightHand;
+      this.femaleLeftHandSvg = this.selectedLeftHand;
+    }
+    else {
+      this.selectedRightHand = this.maleRightHandSvgs[0].toString();
+      this.selectedLeftHand = this.maleLeftHandSvgs[0].toString();
+      this.maleRightHandSvg = this.selectedRightHand;
+      this.maleLeftHandSvg = this.selectedLeftHand;
+    }
+
     this.selectedBackground = this.backgroundSvgPaths[1];
     this.selectedFace = this.faceSvgs[1].toString();
 
@@ -302,19 +357,66 @@ export class CreateCharacterComponent implements OnChanges {
       if(svgContainer) {
         svgContainer.innerHTML = '';
         this.selectedCharacter = '';
+        this.selectedHandsTogether = null;
+        this.handTogeteherSvg = '';
+        this.selectedFace = '';
+        this.selectedCharacter = '';
+        if(this.genderSelected == 'male') {
+          this.selectedRightHand = this.maleRightHandSvgs[0].toString();
+          this.selectedLeftHand = this.maleLeftHandSvgs[0].toString();
+          this.maleRightHandSvg = this.selectedRightHand;
+          this.maleLeftHandSvg = this.selectedLeftHand;
+          this.postureSelected == 'standing'
+          this.maleLegsSvg = await this.svgService.loadSvg('leg/male/male-standing.svg');
+          this.maleLegsSvg = await this.svgOptimizer.optimize(this.maleLegsSvg);
+
+          if(this.selectedCharacter) {
+            this.combineAndDisplaySvgs();
+          }
+        }
+        else {
+          this.selectedRightHand = this.femaleRightHandSvgs[1].toString();
+          this.selectedLeftHand = this.femaleLeftHandSvgs[1].toString();
+          this.femaleRightHandSvg = this.selectedRightHand;
+          this.femaleLeftHandSvg = this.selectedLeftHand; 
+          this.postureSelected == 'standing'
+          this.legsSvg = await this.svgService.loadSvg('leg/standing.svg');
+          this.legsSvg = await this.svgOptimizer.optimize(this.legsSvg); 
+          if(this.selectedCharacter) {
+            this.combineAndDisplaySvgs();
+          }
+        }
       }
     }
 
     if (changes['faceSvg1'] && this.faceSvg1) {
+      if(this.selectedFace == '' ) {
+        if(this.genderSelected == 'male') {
+          this.selectedRightHand = this.maleRightHandSvgs[0].toString();
+          this.selectedLeftHand = this.maleLeftHandSvgs[0].toString();
+          this.maleRightHandSvg = this.selectedRightHand;
+          this.maleLeftHandSvg = this.selectedLeftHand;
+        }
+        else {
+          this.selectedRightHand = this.femaleRightHandSvgs[1].toString();
+          this.selectedLeftHand = this.femaleLeftHandSvgs[1].toString();
+          this.femaleRightHandSvg = this.selectedRightHand;
+          this.femaleLeftHandSvg = this.selectedLeftHand;  
+        }
+      }
+
       this.selectedCharacter = this.faceSvg1[1];
       console.log('face changed:', this.faceSvg1);
         this.selectedFace = this.faceSvg1[0].toString();
         this.faceSvg = this.selectedFace;
         console.log('hello' + this.selectedCharacter);
+        console.log('selectedFace' + this.selectedFace);
+
         if(this.selectedFace && this.selectedFace !== '' ){
           console.log('test passed',this.selectedCharacter);
+         
           this.combineAndDisplaySvgs();
-        }
+        } 
     }
   
     if (changes['assetsColor'] && this.assetsColor) {
@@ -326,24 +428,53 @@ export class CreateCharacterComponent implements OnChanges {
 
     if(changes['postureSelected'] && this.postureSelected) {
       if(this.postureSelected == 'standing') {
-        this.legsSvg = await this.svgService.loadSvg('leg/standing.svg');
-        this.legsSvg = await this.svgOptimizer.optimize(this.legsSvg);
-        if(this.selectedCharacter && this.selectedCharacter !== ''  && this.genderSelected == 'female' ){
-          this.combineAndDisplaySvgs();
+        if(this.genderSelected == 'female') {
+          this.legsSvg = await this.svgService.loadSvg('leg/standing.svg');
+          this.legsSvg = await this.svgOptimizer.optimize(this.legsSvg);
+          if(this.selectedCharacter && this.selectedCharacter !== ''  && this.genderSelected == 'female' ){
+            this.combineAndDisplaySvgs();
+          }
         }
+        else {
+          this.maleLegsSvg = await this.svgService.loadSvg('leg/male/male-standing.svg');
+          this.maleLegsSvg = await this.svgOptimizer.optimize(this.maleLegsSvg);
+          if(this.selectedCharacter && this.selectedCharacter !== ''  && this.genderSelected == 'male' ){
+            this.combineAndDisplaySvgs();
+          }
+        }
+       
       }
       else if(this.postureSelected == 'walking') { 
-        this.legsSvg = await this.svgService.loadSvg('leg/walking.svg');
-        this.legsSvg = await this.svgOptimizer.optimize(this.legsSvg);
-        if(this.selectedCharacter && this.selectedCharacter !== '' && this.genderSelected == 'female' ){
-          this.combineAndDisplaySvgs();
+        if(this.genderSelected == 'female') {
+          this.legsSvg = await this.svgService.loadSvg('leg/walking.svg');
+          this.legsSvg = await this.svgOptimizer.optimize(this.legsSvg);
+          if(this.selectedCharacter && this.selectedCharacter !== '' && this.genderSelected == 'female' ){
+            this.combineAndDisplaySvgs();
+          }
         }
+        else {
+          this.maleLegsSvg = await this.svgService.loadSvg('leg/male/male-walking.svg');
+          this.maleLegsSvg = await this.svgOptimizer.optimize(this.maleLegsSvg);
+          if(this.selectedCharacter && this.selectedCharacter !== ''  && this.genderSelected == 'male' ){
+            this.combineAndDisplaySvgs();
+          }
+        }
+       
       }
       else if (this.postureSelected == 'siting') {
-        this.legsSvg = await this.svgService.loadSvg('leg/siting.svg');
-        this.legsSvg = await this.svgOptimizer.optimize(this.legsSvg);
-        if(this.selectedCharacter && this.selectedCharacter !== ''  && this.genderSelected == 'female' ){
-          this.combineAndDisplaySvgs();
+        if(this.genderSelected == 'female') { 
+          this.legsSvg = await this.svgService.loadSvg('leg/siting.svg');
+          this.legsSvg = await this.svgOptimizer.optimize(this.legsSvg);
+          if(this.selectedCharacter && this.selectedCharacter !== ''  && this.genderSelected == 'female' ){
+            this.combineAndDisplaySvgs();
+          }
+        }
+        else {
+          this.maleLegsSvg = await this.svgService.loadSvg('leg/male/male-siting.svg');
+          this.maleLegsSvg = await this.svgOptimizer.optimize(this.maleLegsSvg);
+          if(this.selectedCharacter && this.selectedCharacter !== ''  && this.genderSelected == 'male' ){
+            this.combineAndDisplaySvgs();
+          }
         }
       }
     }
@@ -358,16 +489,28 @@ export class CreateCharacterComponent implements OnChanges {
     this.backgroundSvg = await this.svgService.loadSvg(this.backgroundSvgPaths[1]);
     this.faceSvg = await this.svgService.loadSvg(this.faceSvgPaths[1]);
     this.faceSvg = await this.svgOptimizer.optimize(this.faceSvg);
-    this.bodySvg = await this.svgService.loadSvg('body.svg');
-    this.bodySvg = await this.svgOptimizer.optimize(this.bodySvg);
-    this.leftHandSvg = await this.svgService.loadSvg(this.leftHandSvgPaths[1]);
-    this.leftHandSvg = await this.svgOptimizer.optimize(this.leftHandSvg);
-    this.rightHandSvg = await this.svgService.loadSvg(this.rightHandSvgPaths[1]);
-    this.rightHandSvg = await this.svgOptimizer.optimize(this.rightHandSvg);
-    // this.handTogeteherSvg = await this.svgService.loadSvg(this.handTogetherSvgPaths[1]);
-    // this.handTogeteherSvg = await this.svgOptimizer.optimize(this.handTogeteherSvg);
+    this.femaleBodySvg = await this.svgService.loadSvg('body.svg');
+    this.femaleBodySvg = await this.svgOptimizer.optimize(this.femaleBodySvg);
+    this.maleBodySvg = await this.svgService.loadSvg('top.svg');
+    this.maleBodySvg = await this.svgOptimizer.optimize(this.maleBodySvg);
+    this.femaleLeftHandSvg = await this.svgService.loadSvg(this.femaleLeftHandSvgPaths[1]);
+    this.femaleLeftHandSvg = await this.svgOptimizer.optimize(this.femaleLeftHandSvg);
+    this.maleLeftHandSvg = await this.svgService.loadSvg(this.maleLeftHandSvgPaths[0]);
+    this.maleLeftHandSvg = await this.svgOptimizer.optimize(this.maleLeftHandSvg);
+    this.femaleRightHandSvg = await this.svgService.loadSvg(this.femaleRightHandSvgPaths[1]);
+    this.femaleRightHandSvg = await this.svgOptimizer.optimize(this.femaleRightHandSvg);
+    this.maleRightHandSvg = await this.svgService.loadSvg(this.maleRightHandSvgPaths[0]);
+    this.maleRightHandSvg = await this.svgOptimizer.optimize(this.maleRightHandSvg);
     this.legsSvg = await this.svgService.loadSvg('leg/standing.svg');
     this.legsSvg = await this.svgOptimizer.optimize(this.legsSvg);
+    this.maleLegsSvg = await this.svgService.loadSvg('leg/male/male-standing.svg');
+    this.maleLegsSvg = await this.svgOptimizer.optimize(this.maleLegsSvg);
+    this.maleNeckSvg = await this.svgService.loadSvg('neck.svg');
+    this.maleNeckSvg = await this.svgOptimizer.optimize(this.maleNeckSvg);
+    this.maleTopLefttHand = await this.svgService.loadSvg('top-left-hand.svg');
+    this.maleTopLefttHand = await this.svgOptimizer.optimize(this.maleTopLefttHand);
+    this.maleTopRightHand = await this.svgService.loadSvg('top-right-hand.svg');
+    this.maleTopRightHand = await this.svgOptimizer.optimize(this.maleTopRightHand);
   }
 
   private async loadSvgSets(paths: string[], svgArray: SafeHtml[]) {
@@ -402,17 +545,27 @@ export class CreateCharacterComponent implements OnChanges {
       this.selectedHandsTogether = null;
       this.handTogeteherSvg = '';
       this.selectedRightHand = hand.toString();
-      this.rightHandSvg = this.selectedRightHand;
+      if(this.genderSelected == 'male') { 
+      this.maleRightHandSvg = this.selectedRightHand;
+      }
+      else {
+        this.femaleRightHandSvg = this.selectedRightHand;
+      }
     }
     if(handChoosen == "left") {
       this.selectedHandsTogether = null;
       this.handTogeteherSvg = '';
       this.selectedLeftHand = hand.toString();
-      this.leftHandSvg = this.selectedLeftHand;
+      if(this.genderSelected == 'male') { 
+          this.maleLeftHandSvg = this.selectedLeftHand;
+        }
+        else {
+          this.femaleLeftHandSvg = this.selectedLeftHand;
+        }
     }
     if(handChoosen == "handsTogether"){
-      this.leftHandSvg = '';
-      this.rightHandSvg = '';
+      this.femaleLeftHandSvg = '';
+      this.femaleRightHandSvg = '';
       this.selectedLeftHand = null;
       this.selectedRightHand = null;
       this.selectedHandsTogether = hand.toString();
@@ -439,6 +592,7 @@ export class CreateCharacterComponent implements OnChanges {
 
 
   private async combineAndDisplaySvgs() {
+
     const svgContainer = document.getElementById('svg-container');
     if (!svgContainer) return;
     this.sitingX = 150;
@@ -449,29 +603,64 @@ export class CreateCharacterComponent implements OnChanges {
       this.sitingY = 160;
     }
 
-  
-    const svgContent = ` 
-    <svg width="1600" height="1000" xmlns="http://www.w3.org/2000/svg">
-      ${this.backgroundSvg ? `<g id="background" transform="translate(${0}, -100)">${this.backgroundSvg}</g>` : ''}
-      <g id="face" transform="translate(${502 + this.sitingX}, ${150 + this.sitingY})">${this.faceSvg}</g>
-      <g id="body" transform="translate(${550 + this.sitingX}, ${325 + this.sitingY})">${this.bodySvg}</g>
-      <g id="legs" transform="translate(${350 + this.sitingX}, ${475 + this.sitingY})">${this.legsSvg}</g>
-      ${this.customLogo ? `<g id="background" transform="translate(${585 + this.sitingX}, ${385 + this.sitingY})">${this.customLogo}</g>` : ''}
-      ${this.leftHandSvg ? `<g id="left-hand" transform="translate(${604 + this.sitingX}, ${259 + this.sitingY})">${this.leftHandSvg}</g>` : ''}
-      ${this.rightHandSvg ? `<g id="right-hand" transform="translate(${375 + this.sitingX}, ${328 + this.sitingY})">${this.rightHandSvg}</g>` : ''}
-      ${this.handTogeteherSvg ? `<g id="right-hand" transform="translate(${330 + this.sitingX}, ${305 + this.sitingY})">${this.handTogeteherSvg}</g>` : ''}
 
-    </svg>
-  `;
+    if(this.genderSelected ==  'female') {
+      const svgContent = ` 
+      <svg width="1600" height="1000" xmlns="http://www.w3.org/2000/svg">
+        ${this.backgroundSvg ? `<g id="background" transform="translate(${0}, -100)">${this.backgroundSvg}</g>` : ''}
+        <g id="character-elements">
+          <g id="face" transform="translate(${502 + this.sitingX}, ${150 + this.sitingY})">${this.faceSvg}</g>
+          <g id="body" transform="translate(${550 + this.sitingX}, ${325 + this.sitingY})">${this.femaleBodySvg}</g>
+          <g id="legs" transform="translate(${350 + this.sitingX}, ${475 + this.sitingY})">${this.legsSvg}</g>
+          ${this.customLogo ? `<g id="background" transform="translate(${585 + this.sitingX}, ${385 + this.sitingY})">${this.customLogo}</g>` : ''}
+          ${this.femaleLeftHandSvg ? `<g id="left-hand" transform="translate(${604 + this.sitingX}, ${259 + this.sitingY})">${this.femaleLeftHandSvg}</g>` : ''}
+          ${this.femaleRightHandSvg ? `<g id="right-hand" transform="translate(${375 + this.sitingX}, ${328 + this.sitingY})">${this.femaleRightHandSvg}</g>` : ''}
+          ${this.handTogeteherSvg ? `<g id="right-hand" transform="translate(${330 + this.sitingX}, ${305 + this.sitingY})">${this.handTogeteherSvg}</g>` : ''}
+        </g>
+      </svg>
+    `;
 
-    try {
-      const optimizedSvg = await this.svgOptimizer.optimize(svgContent);
-      svgContainer.innerHTML = optimizedSvg;
-      this.applyColors(svgContainer);
-      this.svgContainerData = true;
-    } catch (error) {
-      console.error('Error optimizing SVG:', error);
+      try {
+        const optimizedSvg = await this.svgOptimizer.optimize(svgContent);
+        svgContainer.innerHTML = optimizedSvg;
+        this.applyColors(svgContainer);
+        this.svgContainerData = true;
+      } catch (error) {
+        console.error('Error optimizing SVG:', error);
+      }
+
     }
+    else {
+      // this.sitingY = -70;
+      const svgContent = ` 
+      <svg width="1600" height="1000" xmlns="http://www.w3.org/2000/svg">
+        ${this.backgroundSvg ? `<g id="background" transform="translate(${0}, -100)">${this.backgroundSvg}</g>` : ''}
+        
+        <!-- Grouping all elements except the background -->
+        <g id="character-elements">
+          <g id="face" transform="translate(${504 + this.sitingX}, ${85 + this.sitingY})">${this.faceSvg}</g>
+          <g id="legs" transform="translate(${285 + this.sitingX}, ${460 + this.sitingY})">${this.maleLegsSvg}</g>
+          <g id="body" transform="translate(${490 + this.sitingX}, ${255 + this.sitingY})">${this.maleBodySvg}</g>
+          <g id="neck" transform="translate(${524 + this.sitingX}, ${253 + this.sitingY})">${this.maleNeckSvg}</g>
+          
+          ${this.maleLeftHandSvg ? `<g id="left-hand" transform="translate(${582 + this.sitingX}, ${190 + this.sitingY})">${this.maleLeftHandSvg}</g>` : ''}
+          ${this.maleRightHandSvg ? `<g id="right-hand" transform="translate(${312 + this.sitingX}, ${252 + this.sitingY})">${this.maleRightHandSvg}</g>` : ''}
+          
+          ${this.customLogo ? `<g id="logo" transform="translate(${535 + this.sitingX}, ${325 + this.sitingY})">${this.customLogo}</g>` : ''}
+          ${this.handTogeteherSvg ? `<g id="hands-together" transform="translate(${330 + this.sitingX}, ${235 + this.sitingY})">${this.handTogeteherSvg}</g>` : ''}
+        </g>
+      </svg>
+    `;
+      try {
+        const optimizedSvg = await this.svgOptimizer.optimize(svgContent);
+        svgContainer.innerHTML = optimizedSvg;
+        this.applyColors(svgContainer);
+        this.svgContainerData = true;
+      } catch (error) {
+        console.error('Error optimizing SVG:', error);
+      }
+    }
+  
   }
 
   private applyColors(svgContainer: HTMLElement) {
@@ -489,6 +678,8 @@ export class CreateCharacterComponent implements OnChanges {
         this.changeColor(svgElement as SVGElement, '.pant', this.pantCombinations[index].pantColor);
         this.changeColor(svgElement as SVGElement, '.pantBottomColor', this.pantCombinations[index].pantBottomColor);
         this.changeColor(svgElement as SVGElement, '.pantOutlineColor', this.pantCombinations[index].pantOutlineColor);
+        this.changeStrokeColor(svgElement as SVGElement, '.pantOutlineStrokeColor', this.pantCombinations[index].pantOutlineColor);
+
       }
       if (this.selectedHairColor) {
         this.changeColor(svgElement as SVGElement, '.hair', this.selectedHairColor);
@@ -586,6 +777,11 @@ export class CreateCharacterComponent implements OnChanges {
   private changeColor(svgElement: SVGElement, selector: string, color: string) {
     svgElement.querySelectorAll(selector).forEach(element => {
       (element as SVGElement).setAttribute('fill', color);
+    });
+  }
+  private changeStrokeColor(svgElement: SVGElement, selector: string, color: string) {
+    svgElement.querySelectorAll(selector).forEach(element => {
+      (element as SVGElement).setAttribute('stroke', color);
     });
   }
 }
