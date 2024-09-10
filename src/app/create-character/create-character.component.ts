@@ -71,6 +71,7 @@ export class CreateCharacterComponent implements OnChanges {
   maleLeftHandSvgs: SafeHtml[] = [];
   maleRightHandSvgs: SafeHtml[] = [];
   handsTogetherSvgs: SafeHtml[] = [];
+  maleHandsTogetherSvgs: SafeHtml[] = [];
   backgroundSvgs: SafeHtml[] = [];
   customLogo: any;
   avaFaceSvgs: SafeHtml[] = [];
@@ -111,10 +112,12 @@ export class CreateCharacterComponent implements OnChanges {
   faceSvgPaths = ['Face-1.svg', 'Face-2.svg', 'Face-3.svg'];
   femaleRightHandSvgPaths = ['hands/Right-hand/right-hand-1.svg', 'hands/Right-hand/right-hand-2.svg', 'hands/Right-hand/right-hand-3.svg', 'hands/Right-hand/right-hand-4.svg', 'hands/Right-hand/right-hand-5.svg'];
   femaleLeftHandSvgPaths = ['hands/Left-hand/left-hand-1.svg', 'hands/Left-hand/left-hand-2.svg', 'hands/Left-hand/left-hand-3.svg', 'hands/Left-hand/left-hand-4.svg', 'hands/Left-hand/left-hand-5.svg'];
-  maleLeftHandSvgPaths = ['hands/Left-hand/male/left-hand-1.svg', 'hands/Left-hand/male/left-hand-2.svg', 'hands/Left-hand/male/left-hand-3.svg', 'hands/Left-hand/male/left-hand-4.svg', 'hands/Left-hand/male/left-hand-5.svg'];
-  maleRightHandSvgPaths = ['hands/Right-hand/male/right-hand-1.svg', 'hands/Right-hand/male/right-hand-2.svg', 'hands/Right-hand/male/right-hand-3.svg', 'hands/Right-hand/male/right-hand-4.svg'];
+  maleLeftHandSvgPaths = ['hands/Left-hand/male/left-hand-1.svg', 'hands/Left-hand/male/left-hand-2.svg', 'hands/Left-hand/male/left-hand-3.svg', 'hands/Left-hand/male/left-hand-4.svg'];
+  maleRightHandSvgPaths = ['hands/Right-hand/male/right-hand-1.svg', 'hands/Right-hand/male/right-hand-2.svg', 'hands/Right-hand/male/right-hand-3.svg'];
 
   handTogetherSvgPaths = ['hands/Hands-together/hands-together-1.svg', 'hands/Hands-together/hands-together-2.svg', 'hands/Hands-together/hands-together-3.svg'];
+  maleHandTogetherSvgPaths = ['hands/Hands-together/male/hands-together-1.svg', 'hands/Hands-together/male/hands-together-2.svg'];
+
   backgroundSvgPaths = ['backgrounds/1.svg','backgrounds/2.svg','backgrounds/3.svg','backgrounds/5.svg','backgrounds/6.svg','backgrounds/8.svg']
   avaFacePaths = ['face/female/Ava/Ava-1.svg','face/female/Ava/Ava-2.svg','face/female/Ava/Ava-3.svg','face/female/Ava/Ava-4.svg','face/female/Ava/Ava-5.svg','face/female/Ava/Ava-6.svg','face/female/Ava/Ava-7.svg'];
   jennaFacePaths = ['face/female/Jenna/Jenna-1.svg','face/female/Jenna/Jenna-2.svg','face/female/Jenna/Jenna-3.svg','face/female/Jenna/Jenna-4.svg','face/female/Jenna/Jenna-5.svg','face/female/Jenna/Jenna-6.svg','face/female/Jenna/Jenna-7.svg','face/female/Jenna/Jenna-8.svg','face/female/Jenna/Jenna-9.svg'];
@@ -135,6 +138,8 @@ export class CreateCharacterComponent implements OnChanges {
   maleFacePngs = ['face/male/face-1.png','face/male/face-2.png','face/male/face-3.png','face/male/face-4.png','face/male/face-5.png']
   femaleFacePngs = ['face/female/face-1.png','face/female/face-2.png','face/female/face-3.png']
   handsTogetherPngPaths = ['hands/Hands-together/png/hands-together-1.png', 'hands/Hands-together/png/hands-together-2.png', 'hands/Hands-together/png/hands-together-3.png'];
+  maleHandTogetherPngPaths = ['hands/Hands-together/male/png/hands-together-1.png', 'hands/Hands-together/male/png/hands-together-2.png'];
+
 
   pantCombinations: Array<{ pantColor: string, pantBottomColor: string, pantOutlineColor: string }> = [
     {
@@ -200,6 +205,7 @@ export class CreateCharacterComponent implements OnChanges {
     await this.loadSvgSets(this.maleLeftHandSvgPaths, this.maleLeftHandSvgs);
     await this.loadSvgSets(this.maleRightHandSvgPaths, this.maleRightHandSvgs);
     await this.loadSvgSets(this.handTogetherSvgPaths, this.handsTogetherSvgs);
+    await this.loadSvgSets(this.maleHandTogetherSvgPaths, this.maleHandsTogetherSvgs);
     await this.loadSvgSets(this.backgroundSvgPaths, this.backgroundSvgs);
     await this.loadSvgSets(this.avaFacePaths, this.avaFaceSvgs);
     await this.loadSvgSets(this.jennaFacePaths, this.jennaFaceSvgs);
@@ -566,8 +572,11 @@ export class CreateCharacterComponent implements OnChanges {
     if(handChoosen == "handsTogether"){
       this.femaleLeftHandSvg = '';
       this.femaleRightHandSvg = '';
+      this.maleRightHandSvg = '';
+      this.maleLeftHandSvg = '';
       this.selectedLeftHand = null;
       this.selectedRightHand = null;
+
       this.selectedHandsTogether = hand.toString();
       this.handTogeteherSvg = this.selectedHandsTogether;
     }
@@ -647,10 +656,11 @@ export class CreateCharacterComponent implements OnChanges {
           ${this.maleRightHandSvg ? `<g id="right-hand" transform="translate(${312 + this.sitingX}, ${252 + this.sitingY})">${this.maleRightHandSvg}</g>` : ''}
           
           ${this.customLogo ? `<g id="logo" transform="translate(${535 + this.sitingX}, ${325 + this.sitingY})">${this.customLogo}</g>` : ''}
-          ${this.handTogeteherSvg ? `<g id="hands-together" transform="translate(${330 + this.sitingX}, ${235 + this.sitingY})">${this.handTogeteherSvg}</g>` : ''}
+          ${this.handTogeteherSvg ? `<g id="hands-together" transform="translate(${280 + this.sitingX}, ${234 + this.sitingY})">${this.handTogeteherSvg}</g>` : ''}
         </g>
       </svg>
     `;
+    console.log('hand together',this.maleLegsSvg)
       try {
         const optimizedSvg = await this.svgOptimizer.optimize(svgContent);
         svgContainer.innerHTML = optimizedSvg;

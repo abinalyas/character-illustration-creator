@@ -124,15 +124,23 @@
           <img [style]="selectedLeftHand == femaleLeftHandSvgs[i] ? 'border: 10px solid red; box-shadow: 0 0 0 0px #ff3e3e, 0 16px 19px rgba(166, 99, 99, .28);' : ''" *ngFor="let leftHandPng of leftHandPngPaths; let i = index" [src]="leftHandPng" class="svg-item" (click)="onHandClick(femaleLeftHandSvgs[i], 'left')"/>
         </div>
         <div *ngIf="genderSelected === 'male'" class="svg-wrapper">
-          <img [style]="selectedLeftHand == femaleLeftHandSvgs[i] ? 'border: 10px solid red; box-shadow: 0 0 0 0px #ff3e3e, 0 16px 19px rgba(166, 99, 99, .28);' : ''" *ngFor="let leftHandPng of maleLeftHandPngPaths; let i = index" [src]="leftHandPng" class="svg-item" (click)="onHandClick(maleLeftHandSvgs[i], 'left')"/>
+          <img [style]="selectedLeftHand == maleLeftHandSvgs[i] ? 'border: 10px solid red; box-shadow: 0 0 0 0px #ff3e3e, 0 16px 19px rgba(166, 99, 99, .28);' : ''" *ngFor="let leftHandPng of maleLeftHandPngPaths; let i = index" [src]="leftHandPng" class="svg-item" (click)="onHandClick(maleLeftHandSvgs[i], 'left')"/>
         </div>
       </div>
 
       <div *ngIf="selectedTab === 'handsTogether'" class="content">
         <!-- {{selectedLeftHand}} -->
-        <div class="svg-wrapper">
-          <img [style]="selectedHandsTogether == handsTogetherSvgs[i] ? 'border: 10px solid red; box-shadow: 0 0 0 0px #ff3e3e, 0 16px 19px rgba(166, 99, 99, .28);' : ''" *ngFor="let handTogetherPng of handsTogetherPngPaths; let i = index" [src]="handTogetherPng" class="svg-item" (click)="onHandClick(handsTogetherSvgs[i], 'handsTogether')"/>
+        <div *ngIf="genderSelected === 'female'"> 
+          <div class="svg-wrapper">
+            <img [style]="selectedHandsTogether == handsTogetherSvgs[i] ? 'border: 10px solid red; box-shadow: 0 0 0 0px #ff3e3e, 0 16px 19px rgba(166, 99, 99, .28);' : ''" *ngFor="let handTogetherPng of handsTogetherPngPaths; let i = index" [src]="handTogetherPng" class="svg-item" (click)="onHandClick(handsTogetherSvgs[i], 'handsTogether')"/>
+          </div>
         </div>
+        <div *ngIf="genderSelected === 'male'"> 
+          <div class="svg-wrapper">
+            <img [style]="selectedHandsTogether == maleHandTogetherSvgPaths[i] ? 'border: 10px solid red; box-shadow: 0 0 0 0px #ff3e3e, 0 16px 19px rgba(166, 99, 99, .28);' : ''" *ngFor="let handTogetherPng of maleHandTogetherPngPaths; let i = index" [src]="handTogetherPng" class="svg-item" (click)="onHandClick(maleHandsTogetherSvgs[i], 'handsTogether')"/>
+          </div>
+        </div>
+        
       </div>
 
       <div *ngIf="selectedTab === 'leg'" class="content">
