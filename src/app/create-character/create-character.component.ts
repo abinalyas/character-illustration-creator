@@ -368,10 +368,14 @@ export class CreateCharacterComponent implements OnChanges {
         this.selectedFace = '';
         this.selectedCharacter = '';
         if(this.genderSelected == 'male') {
-          this.selectedRightHand = this.maleRightHandSvgs[0].toString();
-          this.selectedLeftHand = this.maleLeftHandSvgs[0].toString();
-          this.maleRightHandSvg = this.selectedRightHand;
-          this.maleLeftHandSvg = this.selectedLeftHand;
+          if(this.maleRightHandSvgs[0]) {
+            this.selectedRightHand = this.maleRightHandSvgs[0].toString();
+            this.maleRightHandSvg = this.selectedRightHand;
+          }
+          if(this.maleLeftHandSvgs[0]) {
+            this.selectedLeftHand = this.maleLeftHandSvgs[0].toString();
+            this.maleLeftHandSvg = this.selectedLeftHand;
+          }
           this.postureSelected == 'standing'
           this.maleLegsSvg = await this.svgService.loadSvg('leg/male/male-standing.svg');
           this.maleLegsSvg = await this.svgOptimizer.optimize(this.maleLegsSvg);
@@ -380,11 +384,15 @@ export class CreateCharacterComponent implements OnChanges {
             this.combineAndDisplaySvgs();
           }
         }
-        else {
-          this.selectedRightHand = this.femaleRightHandSvgs[1].toString();
-          this.selectedLeftHand = this.femaleLeftHandSvgs[1].toString();
-          this.femaleRightHandSvg = this.selectedRightHand;
-          this.femaleLeftHandSvg = this.selectedLeftHand; 
+        else if(this.genderSelected == 'female') {
+          if(this.femaleRightHandSvgs[1]) {
+            this.selectedRightHand = this.femaleRightHandSvgs[1].toString();
+              this.femaleRightHandSvg = this.selectedRightHand;
+          }
+          if(this.femaleLeftHandSvgs[1]) {
+            this.selectedLeftHand = this.femaleLeftHandSvgs[1].toString();
+            this.femaleLeftHandSvg = this.selectedLeftHand; 
+          }
           this.postureSelected == 'standing'
           this.legsSvg = await this.svgService.loadSvg('leg/standing.svg');
           this.legsSvg = await this.svgOptimizer.optimize(this.legsSvg); 
@@ -398,31 +406,41 @@ export class CreateCharacterComponent implements OnChanges {
     if (changes['faceSvg1'] && this.faceSvg1) {
       if(this.selectedFace == '' ) {
         if(this.genderSelected == 'male') {
-          this.selectedRightHand = this.maleRightHandSvgs[0].toString();
-          this.selectedLeftHand = this.maleLeftHandSvgs[0].toString();
-          this.maleRightHandSvg = this.selectedRightHand;
-          this.maleLeftHandSvg = this.selectedLeftHand;
+          if(this.maleRightHandSvgs[0]) {
+            this.selectedRightHand = this.maleRightHandSvgs[0].toString();
+            this.maleRightHandSvg = this.selectedRightHand;
+          }
+          if(this.maleLeftHandSvgs[0]) {
+            this.selectedLeftHand = this.maleLeftHandSvgs[0].toString();
+            this.maleLeftHandSvg = this.selectedLeftHand;
+          }
         }
         else {
-          this.selectedRightHand = this.femaleRightHandSvgs[1].toString();
-          this.selectedLeftHand = this.femaleLeftHandSvgs[1].toString();
-          this.femaleRightHandSvg = this.selectedRightHand;
-          this.femaleLeftHandSvg = this.selectedLeftHand;  
+          if(this.femaleRightHandSvgs[1]) {
+            this.selectedRightHand = this.femaleRightHandSvgs[1].toString();
+            this.femaleRightHandSvg = this.selectedRightHand;
+          }
+          if(this.femaleLeftHandSvgs[1]) {
+            this.selectedLeftHand = this.femaleLeftHandSvgs[1].toString();
+            this.femaleLeftHandSvg = this.selectedLeftHand;  
+          }
         }
       }
 
       this.selectedCharacter = this.faceSvg1[1];
       console.log('face changed:', this.faceSvg1);
+      if(this.faceSvg1[0]) {
         this.selectedFace = this.faceSvg1[0].toString();
         this.faceSvg = this.selectedFace;
         console.log('hello' + this.selectedCharacter);
         console.log('selectedFace' + this.selectedFace);
+      }
 
-        if(this.selectedFace && this.selectedFace !== '' ){
-          console.log('test passed',this.selectedCharacter);
-         
-          this.combineAndDisplaySvgs();
-        } 
+      if(this.selectedFace && this.selectedFace !== '' ){
+        console.log('test passed',this.selectedCharacter);
+      
+        this.combineAndDisplaySvgs();
+      } 
     }
   
     if (changes['assetsColor'] && this.assetsColor) {
